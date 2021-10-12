@@ -1,0 +1,140 @@
+% SOURCE: https://www.latextemplates.com/template/science-journal
+
+% Use only LaTeX2e, calling the article.cls class and 12-point type.
+
+\ifdigitalcopy
+\documentclass[a4paper,12pt]{article}
+\else
+\documentclass[a4paper,12pt,twoside]{article}
+\fi
+
+% Users of the {thebibliography} environment or BibTeX should use the
+% scicite.sty package, downloadable from *Science* at
+% www.sciencemag.org/about/authors/prep/TeX_help/ .
+% This package should properly format in-text
+% reference calls and reference-list numbers.
+
+\usepackage{external_content/layout/scicite}
+
+% Use times if you have the font installed; otherwise, comment out the
+% following line.
+
+\usepackage{times}
+
+% The preamble here sets up a lot of new/revised commands and
+% environments.  It's annoying, but please do *not* try to strip these
+% out into a separate .sty file (which could lead to the loss of some
+% information when we convert the file to other formats).  Instead, keep
+% them in the preamble of your main LaTeX source file.
+
+
+% The following parameters seem to provide a reasonable page setup.
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ left=24mm,
+ right=24mm,
+ top=33mm,
+ bottom=33mm
+ }
+ % \oddsidemargin 2mm
+
+
+%The next command sets up an environment for the abstract to your paper.
+
+\newenvironment{sciabstract}{%
+\begin{quote} \bf}
+{\end{quote}}
+
+
+% The following lines set up an environment for the last note in the
+% reference list, which commonly includes acknowledgments of funding,
+% help, etc.  It's intended for users of BibTeX or the {thebibliography}
+% environment.  Users who are hand-coding their references at the end
+% using a list environment such as {enumerate} can simply add another
+% item at the end, and it will be numbered automatically.
+
+\newcounter{lastnote}
+\newenvironment{scilastnote}{%
+\setcounter{lastnote}{\value{enumiv}}%
+\addtocounter{lastnote}{+1}%
+\begin{list}%
+{\arabic{lastnote}.}
+{\setlength{\leftmargin}{.22in}}
+{\setlength{\labelsep}{.5em}}}
+{\end{list}}
+
+% enable links
+\usepackage{hyperref}
+
+% glossary
+\usepackage[automake,acronym]{glossaries}
+\loadglsentries{reference/glossary.tex}
+\loadglsentries{reference/acronym.tex}
+\makeglossaries
+
+% add media
+\usepackage{graphicx}
+
+% add code listings
+\usepackage{listings}
+
+% add colours
+\usepackage{xcolor}
+
+% for tables
+\usepackage{wrapfig}
+
+% enhance captions
+\usepackage{caption}
+\usepackage{subcaption}
+
+
+
+% bibliography
+\usepackage[sorting=none]{biblatex}
+\bibliography{reference/scibib}
+
+% add todonotes
+\usepackage{todonotes}
+\setlength {\marginparwidth}{20mm}  % distance from margin
+
+
+% control the spacing between lines
+\usepackage{setspace}
+\onehalfspacing
+
+% for \displayquote
+\usepackage{csquotes}
+
+% avoid widow and orphan lines in document
+% https://en.wikipedia.org/wiki/Widows_and_orphans
+\clubpenalty=10000
+\widowpenalty=10000
+
+% control ToC formatting
+\usepackage{tocloft}
+
+% boxes around text
+\usepackage{tcolorbox}
+
+
+% SVG support, N.B. this requires `inkscape` to be installed and present in PATH
+% as well as the option `--shell-escape` to be enabled.
+% using sublime, append this to LaTeXing settings: 
+%     "build_arguments": [
+%         "--shell-escape"
+%     ],
+\usepackage{svg}
+
+% fine tune typography
+\usepackage{microtype}
+
+% math packages
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% enhanced footnotes
+\usepackage[bottom]{footmisc}

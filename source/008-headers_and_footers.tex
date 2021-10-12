@@ -1,0 +1,35 @@
+\usepackage{fancyhdr}
+
+\headheight18pt  % suppresses a warning of unknown origin about the headheight
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\newcommand\lheadcontent{\includesvg[width=.11\textwidth]{external_content/media/HKA-Logo-IWI-H.svg}}
+\newcommand\cheadcontent{\textsc{Seminar Paper}}
+\newcommand\rheadcontent{Cédric Uden}
+
+\newcommand\lfootcontent{}
+\newcommand\cfootcontent{{\footnotesize\leftmark}}
+\newcommand\rfootcontent{Page \thepage}
+
+\ifdigitalcopy
+
+\lhead{\lheadcontent}
+\rhead{\rheadcontent}
+
+\lfoot{\lfootcontent}
+\rfoot{\rfootcontent}
+
+\else
+
+\fancyhead[LE,RO]{\lheadcontent}
+\fancyhead[LO,RE]{\rheadcontent}
+
+\fancyfoot[LE,RO]{\lfootcontent}
+\fancyfoot[LO,RE]{\rfootcontent}
+
+\fi
+
+\chead{\cheadcontent}
+\cfoot{\cfootcontent}
