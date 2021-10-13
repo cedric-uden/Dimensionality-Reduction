@@ -32,12 +32,22 @@ extensions=(
 			)
 
 
+ALL_OUTS=""
 for ext in "${extensions[@]}"
 do
-	CMD="find . -type f -name *.${ext} -not -path '.git/*'"
-	OUT=$($CMD)
+	CMD="find . -type f -name \"*.${ext}\" -not -path '.git/*'"
+	OUT=$(eval $CMD)
+	ALL_OUTS=$ALL_OUTS$OUT
+	# echo $CMD
 	# only launch if output is found
 	if [[ $OUT != "" ]]; then
-		rm $OUT
+		# echo $OUT
+		for line in "$OUT"; do
+			rm $line
+		done
 	fi
 done
+
+if [[ $ALL_OUTS == "" ]]; then
+	echo "Nothing to delete"
+fi
