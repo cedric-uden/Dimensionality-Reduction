@@ -5,7 +5,11 @@
 \pagestyle{fancy}
 \fancyhf{}
 
-\newcommand\lheadcontent{\includesvg[width=.11\textwidth]{external_content/media/HKA-Logo-IWI-H.svg}}
+\newcommand\lheadcontent{
+	\ifprintsvg
+	\includesvg[width=.11\textwidth]{external_content/media/HKA-Logo-IWI-H.svg}
+	\fi
+}
 \newcommand\cheadcontent{\textsc{Seminar Paper}}
 \newcommand\rheadcontent{Cédric Uden}
 
