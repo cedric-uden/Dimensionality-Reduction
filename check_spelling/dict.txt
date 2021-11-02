@@ -1,4 +1,4 @@
-personal_ws-1.1 en 40 
+personal_ws-1.1 en 50 
 Cédric
 Dimensionality
 HKA
@@ -6,8 +6,10 @@ Hochschule
 IWI
 Isomap
 Karlsruhe
+Overcomplication
 RO
 Uden
+analyse
 backcolour
 backgroundcolor
 basicstyle
@@ -16,7 +18,9 @@ breaklines
 captionpos
 codegray
 codegreen
+cognisances
 commentstyle
+dimensionality
 hkaRed
 iwiPurple
 keepspaces
@@ -28,14 +32,20 @@ mystyle
 numbersep
 numberstyle
 pca
+phantisised
 rgb
 scibib
 scikit
+sep
 showspaces
 showstringspaces
 showtabs
 stringstyle
+summarise
+summarises
 svd
 svg
 tabsize
 tex
+xshift
+yshift
