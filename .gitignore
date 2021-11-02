@@ -1,5 +1,7 @@
 foo*
 
+# ignore spell checking backup files
+*.bak
 
 
 
