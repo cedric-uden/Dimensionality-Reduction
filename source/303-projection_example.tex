@@ -1,0 +1,67 @@
+\newcommand{\textproperties}[1]{\textcolor{gray}{\textbf{#1}}}
+\newcommand{\circlecolor}{hkaRed}
+\newcommand{\circlesize}{6}
+
+
+%%%%%%%%%%%%%%%%%%%
+
+\begin{tikzpicture}[scale=\tikzscale]
+ 	\node at (12.5,7) {\textproperties{example data set in 2D space:}};
+	% AXIS
+	\draw[->,ultra thick] 
+		(0,0)--(25,0) 
+			node[midway, below, yshift=-1mm]{$x$};
+
+	\draw[->,ultra thick] 
+		(0,0)--(0,5) 
+			node[midway, left, xshift=-1mm]{$y$};
+
+	% NODES
+
+	\begin{scope}[color=\circlecolor]
+	 	\newcommand{\datapoints}{%
+	 		{24,1},	{23,1},	{21,3},	{4,2},	{8,1},	{20,2},	{19,1},	{17,2},	{7,2},	{24,1},	{5,2},	{2,3},	{5,2},	{9,1},	{24,1},	{14,2},	{12,2},	{12,1},	{17,1},	{24,2},	{12,2},	{18,2},	{18,1},	{12,1},	{10,3},	{24,2},	{24,3},	{22,1},	{9,2},	{16,2}%
+	 	}
+
+		\foreach \i in \datapoints {
+		 	\filldraw (\i) 
+		 		circle (\circlesize pt);
+		}
+ 	\end{scope}
+
+%%%%%%%%%%%%%%%%%%%
+
+	\draw[->,ultra thick] (0,-6)--(25,-6);
+ 	\node at (12.5,-4) {\textproperties{projection on x \gls{hyperplane}:}};
+	\node at (1,-7) {$x$};
+
+	\begin{scope}[color=\circlecolor]
+	 	\newcommand{\datapoints}{%
+	 		{24,-6},	{23,-6},	{21,-6},	{4,-6},	{8,-6},	{20,-6},	{19,-6},	{17,-6},	{7,-6},	{24,-6},	{5,-6},	{2,-6},	{5,-6},	{9,-6},	{24,-6},	{14,-6},	{12,-6},	{12,-6},	{17,-6},	{24,-6},	{12,-6},	{18,-6},	{18,-6},	{12,-6},	{10,-6},	{24,-6},	{24,-6},	{22,-6},	{9,-6},	{16,-6}%
+	 	}
+
+		\foreach \i in \datapoints {
+		 	\filldraw (\i) 
+		 		circle (\circlesize pt);
+		}
+ 	\end{scope}
+
+%%%%%%%%%%%%%%%%%%%
+
+ 	\node at (12.5,-10) {\textproperties{projection on y \gls{hyperplane}:}};
+	\draw[->,ultra thick] (0,-12)--(25,-12);
+	\node at (1,-13) {$y$};
+
+	\begin{scope}[color=\circlecolor]
+	 	\newcommand{\datapoints}{%
+	 		{6,-12},	{6,-12},	{18,-12},	{12,-12},	{6,-12},	{12,-12},	{6,-12},	{12,-12},	{12,-12},	{6,-12},	{12,-12},	{18,-12},	{12,-12},	{6,-12},	{6,-12},	{12,-12},	{12,-12},	{6,-12},	{6,-12},	{12,-12},	{12,-12},	{12,-12},	{6,-12},	{6,-12},	{18,-12},	{12,-12},	{18,-12},	{6,-12},	{12,-12},	{12,-12}%
+	 	}
+
+		\foreach \i in \datapoints {
+		 	\filldraw (\i) 
+		 		circle (\circlesize pt);
+		}
+ 	\end{scope}
+
+
+\end{tikzpicture}
