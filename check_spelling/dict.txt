@@ -1,4 +1,4 @@
-personal_ws-1.1 en 50 
+personal_ws-1.1 en 59 
 Cédric
 Dimensionality
 HKA
@@ -9,17 +9,23 @@ Karlsruhe
 Overcomplication
 RO
 Uden
+Visualisation
 analyse
 backcolour
 backgroundcolor
 basicstyle
+behaviour
+behavioural
+behaviours
 breakatwhitespace
 breaklines
 captionpos
+categorise
 codegray
 codegreen
 cognisances
 commentstyle
+contrastable
 dimensionality
 hkaRed
 iwiPurple
@@ -47,5 +53,8 @@ svd
 svg
 tabsize
 tex
+utilise
+utilised
+visualise
 xshift
 yshift
