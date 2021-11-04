@@ -1,0 +1,23 @@
+= Dimensionality Reduction
+
+Repository for my seminar paper in 6th semester of B.Sc. in computer science studies.
+
+This repository contains the LaTeX files for the paper as well as accompanying jupyter notebooks used for demonstration and testing.
+
+== Report
+
+All files are found in the xref:report/.[report] folder
+
+== Notebooks
+
+=== Setup
+
+https://docs.conda.io/projects/continuumio-conda/en/latest/user-guide/install/index.html#system-requirements[install `conda`] and run the following:
+
+[source, bash]
+----
+conda create --name dr python=3.9
+conda activate dr
+conda install poetry
+poetry install
+----
