@@ -3,7 +3,7 @@ We are now exploring first cognisances in the field of dimensionality reduction 
 
 \vfill
 
-\subsection{The Curse of Dimensionality} \label{curseOfDimensionality}
+\subsection{The curse of dimensionality} \label{curseOfDimensionality}
 
 The concept of the \emph{curse of dimensionality} was first introduced by Richard Bellman in 1957. \cite{DynProg}
 His book, \emph{Dynamic Programming}, explains a method he had developed to explore more efficient solutions to counteract the increasing complexity in problems facing our day-to-day lives. 
@@ -39,19 +39,19 @@ The necessity of reducing dimensions in a large data set serves different purpos
 Now follows a brief summary of the different applications where we can utilise the methods of dimensionality reduction. 
 Finally, we will conclude how despite their disparities, the various application methods come together in our ultimate goal of finding tractable and resource-conscious solutions.
 
-\paragraph{Computational Impact}
+\paragraph{Computational impact}
 
 The most intuitive benefit is certainly its impact on computational performance.
 Having fewer features reduces our required storage space and allows our learning algorithms to run much faster. \cite{PythonMachineLearningCh1}
 
-\paragraph{Feature Engineering}
+\paragraph{Feature engineering}
 
 Our models will only be capable of producing relevant results if the features we supply it with are also relevant. \cite{HandsOnMLCh1}
 \emph{Feature extraction} combines many semantically related features into few, which are found through dimensionality reduction. 
 This helps us to reduce the number of features while retaining as much information as possible from the originating data set.
 This is not to be confused with \emph{feature selection}, which does not benefit from dimensionality reduction and is therefore not considered in this work.
 
-\paragraph{Data Visualisation}
+\paragraph{Data visualisation}
 
 Reducing dimensions can also help us to visually represent data in an intuitive fashion.
 Even picturing a relatively basic 4-dimensional hypercube is incredibly difficult to make sense of.
@@ -73,20 +73,22 @@ Combined, this helps us to build a tractable solution to our problem.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Mathematical Background}
+\subsection{Mathematical background}
 
 To round up the theoretical premises required for this topic, we will become aware of the boundaries of intuitive mathematical concepts which result in highly counter-intuitive behaviours in high dimensional space, as well as their practical solution approaches.
 
-\subsubsection{Euclidean Distance}
+\subsubsection{Euclidean distance \& sparse matrices}
 
 An important aspect which is frequently utilised in various machine learning methods is to evaluate the euclidean distance between two points in a high-dimensional space.
 While the concept is simple to understand and illustrate in two or three dimensions, its behaviour in a high-dimensional space changes dramatically and it becomes heavily counter-intuitive to get a hold off.
 
 To discover its behavioural implications, we are considering an n-dimensional space and observing the impact of increasing dimensions between seemingly contrastable points. 
-For this .... \todo{finish this section}
+For this .... \todo{finish this section \& consider the sparse matrices section}
 % Boundaries of euclidian distance in a unit cube and its increasing distance in a seemingly identical position
 % Solution approaches through eigenvalues
 
 \subsubsection{Eigenvalues and eigenvectors}
 
-
+\begin{center}
+	\textit{Quickly recapitulate eigenvectors and explain why they are relevant}
+\end{center}
