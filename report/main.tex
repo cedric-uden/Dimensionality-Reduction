@@ -1,42 +1,42 @@
-\input{source/000-conditions.tex}
-\input{source/001-preamble_settings.tex}
-\input{source/002-code_style.tex}
-\input{source/008-headers_and_footers.tex}
-\input{source/031-colors.tex}
-\input{source/032-macros.tex}
+\input{source/0000-conditions.tex}
+\input{source/0001-preamble_settings.tex}
+\input{source/0002-code_style.tex}
+\input{source/0008-headers_and_footers.tex}
+\input{source/0031-colors.tex}
+\input{source/0032-macros.tex}
 
 \begin{document} 
 \pagenumbering{Roman}
 \newcounter{savepage}
 
 \begin{titlepage}
-\input{source/020-title.tex}
-\input{source/021-abstract.tex}
+\input{source/0020-title.tex}
+\input{source/0021-abstract.tex}
 \end{titlepage}
 
-\input{source/022-table_of_content.tex}
+\input{source/0022-table_of_content.tex}
 \setcounter{savepage}{\value{page}}
 
 
 \pagenumbering{arabic}
 \section{Introduction}
-\input{source/100-introduction.tex}
+\input{source/1000-introduction.tex}
 \clearpage
 
 \section{Theory}
-\input{source/200-theory.tex}
+\input{source/2000-theory.tex}
 \clearpage
 
 \section{Techniques}
-\input{source/300-techniques.tex}
+\input{source/3000-techniques.tex}
 \clearpage
 
 \section{Applications}
-\input{source/400-applications.tex}
+\input{source/4000-applications.tex}
 \clearpage
 
 \section{Conclusion}
-\input{source/500-conclusion.tex}
+\input{source/5000-conclusion.tex}
 
 \singlespacing
 % appendix
@@ -44,8 +44,8 @@
 \appendix
 \pagenumbering{Roman}
 \setcounter{page}{\numexpr\value{savepage}}
-\input{source/910-bibliography.tex}
-\input{source/930-glossary_and_acronyms.tex}
-\input{source/940-list_of_content.tex}
+\input{source/9100-bibliography.tex}
+\input{source/9300-glossary_and_acronyms.tex}
+\input{source/9400-list_of_content.tex}
 
 \end{document}
