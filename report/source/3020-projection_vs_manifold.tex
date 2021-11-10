@@ -1,0 +1,51 @@
+% taken from ch 8 in géron's book
+
+In this section, we will compare the general solution approaches available which can be utilised to solve both linear as well as non-linear problems. \cite{HandsOnMLCh8}
+
+\todo{Not quite true, revisit this. \cite{Lee2007NonlinearDR} cite this.}
+
+\renewcommand{\tikzscale}{0.33}
+\begin{wrapfigure}[13]{r}{0.62\textwidth}
+	\vspace*{-8mm}
+	\centering
+	\input{source/3021-projection_example.tex}
+	\captionsetup{justification=centering}
+	\caption{Simple example of a projection}
+    \label{fig:projectionExample}
+\end{wrapfigure}
+
+\paragraph{Projection} In contrast, this is the trivial concept of the two. The idea is to project the data points onto a \gls{hyperplane} which summarises the data with as little information loss as possible.
+
+Figure \ref{fig:projectionExample} illustrates this in a simple example.
+As we can observe, when we pick the right \gls{hyperplane}, such as the x axis in the example, we lose far fewer information than if we would have picked the y axis.
+
+
+\paragraph{Manifold learning} This concept is significantly more difficult to get a hold of.
+Significant breakthroughs \cite{ma2012manifold} in this field were accomplished in the year 2000 in the significant and commonly cited paper \emph{A global geometric framework for nonlinear dimensionality reduction}. \cite{tenenbaum2000global}
+To understand the basic idea, we will demonstrate its behaviour to get an idea of the problem using the popular swiss roll data set pictured in figure \ref{fig:swissrollfull}.
+
+
+\noindent
+\begin{minipage}[c]{0.4\linewidth}
+%
+\vspace*{6mm}
+\begin{center}
+	\includegraphics[width=0.9\textwidth]{external_content/graphs/swiss_roll.png}
+	\captionsetup{justification=centering,type=htypei}
+	\captionof{figure}{Swiss Roll generated from scikit-learn \cite{scikit-learn}}
+	\label{fig:swissrollfull}
+\end{center}
+%
+\end{minipage}\hfill%
+\begin{minipage}[c]{0.55\linewidth}
+Before demystifying this problem, we will then dive into various methods how to bend and twist high-dimensional data into lower-dimensional spaces.
+
+Our goal is to avoid confusing projections such as shown in figure \ref{fig:swissrollprojection}:
+
+\begin{center}
+	\includegraphics[width=0.8\textwidth]{external_content/graphs/swiss_roll-projection.png}
+	\captionsetup{justification=centering,type=htypei}
+	\captionof{figure}{Representation in 2D\\ of a projected swiss role}
+	\label{fig:swissrollprojection}
+\end{center}
+\end{minipage}%

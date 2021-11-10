@@ -2,95 +2,13 @@ Being acquainted with the premise, we now possess a coarse understanding of the 
 Additionally, we became aware of the potential pitfalls that hold true to the subject in general.
 Therefore, we are now ready to take a closer look on how to categorise and associate various techniques.
 
-
-\subsection{Linear vs. non-linear problems}
-
-The utmost category, used to differentiate between various techniques is fortunately mutually exclusive to any method.
-Thanks to this characteristic, we can distinctively classify and associate a given technique.
-This allocation, contrary to the following classifications, is the one that considers the domain of the problem.
-Thus, it requires special attention by its users since it can easily be used erroneously.
-We need to understand the gross patterns in the data set we need to operate on.
-
-The below figure \ref{fig:linearvsnonlinearproblems} illustrates and contrasts the general patterns that we need to identify.\vspace*{4mm}
-
-\renewcommand{\tikzscale}{1.25}
-\begin{figure}[h]
-	\begin{subfigure}{0.48\textwidth}
-	    \caption{Linear problems}
-		\input{source/3001-linear_problem.tex}
-	    \label{subfig:linearproblems}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}{0.48\textwidth}
-	    \caption{Non-linear problems}
-		\input{source/3002-non_linear_problem.tex}
-	    \label{subfig:nonlinearproblems}
-	\end{subfigure}
-\caption{Linear vs. non-linear problems.}
-\label{fig:linearvsnonlinearproblems}
-\end{figure}
-
-As we can see in figure \ref{subfig:linearproblems}, a linear problem is given when we are able to identify a straight line, or any \gls{hyperplane}, to split the data into unambiguous subsets.
-Intuitively and, as we will later examine, factually, these types of problem are comparably easy to solve.
-
-A non-linear problem, as pictured in figure \ref{subfig:nonlinearproblems}, already looks more complex on the first glance.
-And indeed, we will illuminate the solution approaches to this scenario and elaborate on its comportment.
+\subsubsection{Linear vs. non-linear problems}
+\input{source/3010-linear_vs_nonlinear.tex}
 
 \clearpage
 
-\subsection{Projection vs. manifold learning}
-% taken from ch 8 in géron's book
-
-In this section, we will compare the general solution approaches available which can be utilised to solve both linear as well as non-linear problems. \cite{HandsOnMLCh8}
-
-\todo{Not quite true, revisit this. \cite{Lee2007NonlinearDR} cite this.}
-
-\renewcommand{\tikzscale}{0.33}
-\begin{wrapfigure}[13]{r}{0.62\textwidth}
-	\vspace*{-8mm}
-	\centering
-	\input{source/3003-projection_example.tex}
-	\captionsetup{justification=centering}
-	\caption{Simple example of a projection}
-    \label{fig:projectionExample}
-\end{wrapfigure}
-
-\paragraph{Projection} In contrast, this is the trivial concept of the two. The idea is to project the data points onto a \gls{hyperplane} which summarises the data with as little information loss as possible.
-
-Figure \ref{fig:projectionExample} illustrates this in a simple example.
-As we can observe, when we pick the right \gls{hyperplane}, such as the x axis in the example, we lose far fewer information than if we would have picked the y axis.
-
-
-\paragraph{Manifold learning} This concept is significantly more difficult to get a hold of.
-Significant breakthroughs \cite{ma2012manifold} in this field were accomplished in the year 2000 in the significant and commonly cited paper \emph{A global geometric framework for nonlinear dimensionality reduction}. \cite{tenenbaum2000global}
-To understand the basic idea, we will demonstrate its behaviour to get an idea of the problem using the popular swiss roll data set pictured in figure \ref{fig:swissrollfull}.
-
-
-\noindent
-\begin{minipage}[c]{0.4\linewidth}
-%
-\vspace*{6mm}
-\begin{center}
-	\includegraphics[width=0.9\textwidth]{external_content/graphs/swiss_roll.png}
-	\captionsetup{justification=centering,type=htypei}
-	\captionof{figure}{Swiss Roll generated from scikit-learn \cite{scikit-learn}}
-	\label{fig:swissrollfull}
-\end{center}
-%
-\end{minipage}\hfill%
-\begin{minipage}[c]{0.55\linewidth}
-Before demystifying this problem, we will then dive into various methods how to bend and twist high-dimensional data into lower-dimensional spaces.
-
-Our goal is to avoid confusing projections such as shown in figure \ref{fig:swissrollprojection}:
-
-\begin{center}
-	\includegraphics[width=0.8\textwidth]{external_content/graphs/swiss_roll-projection.png}
-	\captionsetup{justification=centering,type=htypei}
-	\captionof{figure}{Representation in 2D\\ of a projected swiss role}
-	\label{fig:swissrollprojection}
-\end{center}
-\end{minipage}%
-
+\subsubsection{Projection vs. manifold learning}
+\input{source/3020-projection_vs_manifold.tex}
 
 \clearpage
 
