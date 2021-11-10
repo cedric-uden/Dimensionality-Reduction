@@ -4,117 +4,19 @@ We are now exploring first cognisances in the field of dimensionality reduction 
 \vfill
 
 \subsection{The curse of dimensionality} \label{curseOfDimensionality}
-
-The concept of the \emph{curse of dimensionality} was first introduced by Richard Bellman in 1957. \cite{DynProg}
-His book, \emph{Dynamic Programming}, explains a method he had developed to explore more efficient solutions to counteract the increasing complexity in problems facing our day-to-day lives. 
-The range of domains where applicable is vast and even covers problems that were impossible to foresee for Richard Bellman.
-Most notable to us, this includes data science in the 21st century and falls right into the realm of dimensionality reduction.
-
-Bellman observed that, when considering a larger set of variables, even simple and well-understood problems such as determining the maximum of a given function becomes worrisome.
-They face a variety of difficulties of both gross and subtle nature.
-
-The gross issues primarily consist of a finite amount of computational resources available, especially back in the 1950's. 
-Having access to the computer systems we have today, they could certainly be considered a computational nirvana for any scientists and mathematicians 65 years ago.
-While Bellman phantisised about such possibilities, he proactively considered them and accurately thought of more subtle problems that could potentially arise.
-His observations were spot on and are an important factor in why his theories are still relevant as ever nowadays.
-
-\emph{The problem is not to be considered solved in the mathematical sense until the structure of the optimal policy is understood}. \cite{DynProg}
-This quote from Richard Bellman eloquently summarises the problem at hand.  
-While it appears plausible, that more quantitative measurements would yield more accurate predictions, our extremely complicated world often misleads us.
-This results in ourselves neither being able to rigorously understand the problem, nor to improve our predictions of challenges we are unable to analyse.
-We need to walk a narrow path between the \emph{Pitfalls of Oversimplification and the Morass of Overcomplication}. \cite{DynProg}
-
-With the premise being described by Bellman in 1957, we can conclude that a large amount of features does not only heavily impede model training, but can additionally result in worse solutions. \cite{HandsOnMLCh8}
-Both from a performance and traceability point of view.
-
+\input{source/2100-curse.tex}
 \vfill
-
 \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Necessity}
-
-The necessity of reducing dimensions in a large data set serves different purposes in the problems we face in data science. 
-Now follows a brief summary of the different applications where we can utilise the methods of dimensionality reduction. 
-Finally, we will conclude how despite their disparities, the various application methods come together in our ultimate goal of finding tractable and resource-conscious solutions.
-
-\paragraph{Computational impact}
-
-The most intuitive benefit is certainly its impact on computational performance.
-Having fewer features reduces our required storage space and allows our learning algorithms to run much faster. \cite{PythonMachineLearningCh1}
-
-\paragraph{Feature engineering}
-
-Our models will only be capable of producing relevant results if the features we supply it with are also relevant. \cite{HandsOnMLCh1}
-\emph{Feature extraction} combines many semantically related features into few, which are found through dimensionality reduction. 
-This helps us to reduce the number of features while retaining as much information as possible from the originating data set.
-This is not to be confused with \emph{feature selection}, which does not benefit from dimensionality reduction and is therefore not considered in this work.
-
-\paragraph{Data visualisation}
-
-Reducing dimensions can also help us to visually represent data in an intuitive fashion.
-Even picturing a relatively basic 4-dimensional hypercube is incredibly difficult to make sense of.
-Actively recalling this information is not only important for our own understanding of data. It is even more important when sharing our observations and ideas with other data scientists and essential when communicating our conclusions to people in an interdisciplinary environment. \cite{PythonMachineLearningCh5}
-
-\paragraph{Traceability}
-
-Having discussed the importance of understanding the problem and its solution earlier in section \ref{curseOfDimensionality}, it is often important to be able to comprehend the prediction a model makes instead of trusting a black box model. 
-Reducing the dimensions and understanding the given data helps us to alleviate this issue.
-
-\subsubsection{Conclusion}
-
-Considering the computational impact helps us to narrow down a complex task into a feasible scope to find resource-conscious solutions.
-Feature extraction helps us to remove dimensions coupled with an increase in predictive performance right off the bat.
-This helps us to visualise the data and to be able to understand and trace its predictions.
-Combined, this helps us to build a tractable solution to our problem.
-
+\input{source/2200-necessity.tex}
 \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Mathematical background}
-
-To round up the theoretical premises required for this topic, we will become aware of the boundaries of intuitive mathematical concepts which result in highly counter-intuitive behaviours in high dimensional space, as well as their practical solution approaches.
-
-\subsubsection{Euclidean distance \& sparse matrices}
-
-An important aspect which is frequently utilised in various machine learning methods is to evaluate the euclidean distance between two points in a high-dimensional space.
-While the concept is simple to understand and illustrate in two or three dimensions, its behaviour in a high-dimensional space changes dramatically and it becomes heavily counter-intuitive to get a hold off.
-
-To discover its behavioural implications, we are considering an n-dimensional space and observing the impact of increasing dimensions between seemingly contrastable points. 
-For this .... \todo{finish this section \& consider the sparse matrices section}
-
-
-
-\vspace{4mm}
-
-\noindent
-\begin{minipage}[c]{0.45\linewidth}
-
-\subsubsection{Geodesic distance}
-
-\begin{center}
-	\textit{Why geodesic distances are important and how they are read}
-\end{center}
-
-
-
-\end{minipage}\hfill%
-\begin{minipage}[c]{0.45\linewidth}
-
-\subsubsection{Eigenvalues and eigenvectors}
-
-\begin{center}
-	\textit{Quickly recapitulate eigenvectors and explain why they are relevant}
-\end{center}
-
-
-\end{minipage}%
-
-
-
-
-
+\input{source/2300-maths.tex}
 
 
