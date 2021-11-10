@@ -4,193 +4,51 @@ Therefore, we are now ready to take a closer look on how to categorise and assoc
 
 \subsubsection{Linear vs. non-linear problems}
 \input{source/3010-linear_vs_nonlinear.tex}
-
 \clearpage
 
 \subsubsection{Projection vs. manifold learning}
 \input{source/3020-projection_vs_manifold.tex}
-
 \clearpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \subsection{Linear techniques}
-
-We will take a look at \gls{pca} \& \gls{lda}.
-
-
-
-
+\input{source/3100-linear_techniques.tex}
 
 \subsubsection{Principal Component Analysis}
-
-\begin{itemize}
-	\item First approaches made in 1901 using simple projections. \cite{pearson1901liii}
-	\item Primarily used for feature extraction \cite{PythonMachineLearningCh5}
-	\item Unsupervised method \cite{PythonMachineLearningCh5}
-	\item Is an eigenvector problem \cite{MultilinearSubspaceLearningCh2}
-	\item scikit-learn implemented this version \cite{minka2000automatic} to guess the output dimesionality. \cite{halko2009finding} is used to decompose the input matrix.
-\end{itemize}
-
+\input{source/3110-pca.tex}
 \clearpage
-
-\paragraph{full \gls{svd}} \label{svd}
-
-According to \cite{wright2001large}
-
-$$\bigo{N^3}$$
-
-\clearpage
-
-\paragraph{\gls{arpack}}
-
-According to \cite{wright2001large}
-
-$$\bigo{N^2}$$
-
-\clearpage
-
-\paragraph{randomised}
-
-According to this \cite{HandsOnMLCh8}
-
-$$\bigo{d^3}$$
-
-
-\clearpage
-
-\paragraph{Conclusion}
-
-
-
-\clearpage
-
-
-
 
 \subsubsection{Linear Discriminant Analysis}
-
-\begin{itemize}
-	\item First approaches made in 1936. \cite{fisher1936use}
-	\item Various solvers
-	\begin{itemize}
-		\item \textbf{Eigenvalue Decomposition}
-		\item Runs in $\bigo{N^3}$ according to \cite{cai2008training}
-	\end{itemize}
-	\begin{itemize}
-		\item \textbf{LSQR}
-		\item Runs in $\bigo{N^2}$ according to \cite{di2013new}
-	\end{itemize}
-		\begin{itemize}
-		\item \textbf{SVD}
-		\item Analogue to SVD in section \ref{svd}
-	\end{itemize}
-\end{itemize}
-
-$$\bigo{TBA}$$
-
-\clearpage
-
-
-\begin{center}
-	\textit{Not sure what comes here, but most certainly going to be two pages}
-\end{center}
-
+\input{source/3120-lda.tex}
 \clearpage
 
 
 
-
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \subsection{Non-linear techniques}
-
-Mention other non-linear techniques that exist.
-
-
-
+\input{source/3200-nonlinear_techniques.tex}
 
 
 \subsubsection{Kernel Principal Component Analysis}
-
-\begin{itemize}
-	\item First introduced by \cite{scholkopf1998nonlinear}
-	\item According to this ...%\cite{}
-\end{itemize}
-
-$$\bigo{TBA}$$
-
+\input{source/3210-kpca.tex}
 \clearpage
-
-\begin{center}
-	\textit{Not sure what comes here, but most certainly going to be two pages}
-\end{center}
-
-\clearpage
-
-
-
-
-
 
 
 \subsubsection{Locally Linear Embedding}
-
-\begin{itemize}
-	\item First introduced by \cite{roweis2000nonlinear}
-	\item According to this \cite{DRUnsupervisedNearestNeighbors}
-	\item A manifold learning technique \cite{HandsOnMLCh8}
-\end{itemize}
-
-$$\bigo{N^2}$$
-
+\input{source/3220-lle.tex}
 \clearpage
-
-\begin{center}
-	\textit{Not sure what comes here, but most certainly going to be two pages}
-\end{center}
-
-\clearpage
-
-
 
 
 \subsubsection{Isomap Embedding}
-
-\begin{itemize}
-	\item \Gls{lle} first introduced by \cite{tenenbaum2000global}
-	\item Tries to preserve the geodesic distances between the instances \cite{HandsOnMLCh8}
-	\item According to this \cite{DRUnsupervisedNearestNeighbors}
-\end{itemize}
-
-$$\bigo{N^2 \log N}$$
-
+\input{source/3230-isomap.tex}
 \clearpage
-
-\begin{center}
-	\textit{Not sure what comes here, but most certainly going to be two pages}
-\end{center}
-
-\clearpage
-
 
 
 \subsubsection{t-SNE}
-
-\begin{itemize}
-	\item \gls{tsne} first introduced by \cite{van2008visualizing}
-	\item Primarily used to visualise datasets
-	\item Tries to preserve the proximity between instances \cite{HandsOnMLCh8}
-	\item According to this \cite{van2014accelerating}
-\end{itemize}
-
-$$\bigo{N \log N}$$
-
-\clearpage
-
-\begin{center}
-	\textit{Not sure what comes here, but most certainly going to be two pages}
-\end{center}
-
+\input{source/3240-tsne.tex}
 \clearpage
