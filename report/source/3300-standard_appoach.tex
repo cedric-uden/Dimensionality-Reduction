@@ -1,4 +1,31 @@
 \subsubsection{Projection}
+
+
+% taken from ch 8 in géron's book
+
+In this section, we will compare the general solution approaches available which can be utilised to solve both linear as well as non-linear problems. \cite{HandsOnMLCh8}
+
+\todo{Not quite true, revisit this. \cite{Lee2007NonlinearDR} cite this.}
+
+\renewcommand{\tikzscale}{0.33}
+\begin{wrapfigure}[13]{r}{0.62\textwidth}
+	\vspace*{-8mm}
+	\centering
+	\input{source/3301-projection_example.tex}
+	\captionsetup{justification=centering}
+	\caption{Simple example of a projection}
+    \label{fig:projectionExample}
+\end{wrapfigure}
+
+\paragraph{Projection} In contrast, this is the trivial concept of the two. The idea is to project the data points onto a \gls{hyperplane} which summarises the data with as little information loss as possible.
+
+Figure \ref{fig:projectionExample} illustrates this in a simple example.
+As we can observe, when we pick the right \gls{hyperplane}, such as the x axis in the example, we lose far fewer information than if we would have picked the y axis.
+
+
+
+
+
 \clearpage
 
 
