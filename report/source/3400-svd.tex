@@ -1,30 +1,66 @@
 \subsubsection{Introduction}
+
+\begin{itemize}
+	\item Important as modern PCA algorithms are basically a statistical application of \gls{svd}
+	\item Modern PCA is basically an applied version of SVD on a centered data matrix
+\end{itemize}
+
 \clearpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{History}
+
+\begin{itemize}
+	\item Historical overview by \cite{stewart1993early}
+\end{itemize}
+
 \clearpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{PCA in Scikit: LAPACK / Full SVD}
-\clearpage
-\paragraph{Minka's method to approximate intrinsic dimension}
+
+\begin{itemize}
+	\item Overview of the theory behind SVD
+\end{itemize}
+
 \ \clearpage
+\ \clearpage
+
+
+\paragraph{Minka's method to approximate intrinsic dimension}
+
+\begin{itemize}
+	\item scikit-learn implemented this version \cite{minka2000automatic} to guess the output dimesionality. 
+	\item \cite{halko2011finding} is used to decompose the input matrix.
+\end{itemize}
+
 \ \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{ARPACK / truncated SVD}
+
+\begin{itemize}
+	\item \cite{wright2001large} ARPACK approach from scikit
+	\item NOT for sparse data, not reviewed here (\href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}{scikit})
+\end{itemize}
+
 \ \clearpage
 \ \clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Randomized SVD}
+
+\begin{itemize}
+	\item \cite{halko2011finding} scikit implementation
+	\item \cite{martinsson2011randomized} scikit implementation
+\end{itemize}
+
 \ \clearpage
 \ \clearpage
 
