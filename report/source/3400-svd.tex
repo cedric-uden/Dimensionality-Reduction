@@ -2,7 +2,13 @@
 
 \begin{itemize}
 	\item Important as modern PCA algorithms are basically a statistical application of \gls{svd}
-	\item Modern PCA is basically an applied version of SVD on a centered data matrix
+	\item Modern PCA is basically an applied version of SVD on a centered data matrix, decomposed into its most statistically descriptive factors
+	\item SVD generalizes the concept of the fast Fourier transform: FFT on generic basis, SVD is tailored to the specific data
+	\item Matrix factorization
+	\item Provides a numerically stable matrix decomposition which is guaranteed to exist (unlike the eigendecomposition) \cite{brunton2019data}: robust and efficient
+	\item Naturally occurring systems often exhibit dominant patterns
+	\item Can be used to de-noise data sets (\cite{brunton2019data} - 1.1)
+	\item Basis for other statistical techniques: Karhunen-Loève transform (KLT) or empirical orthogonal functions (EOFs), canonical correlation analysis (CCA)
 \end{itemize}
 
 \clearpage
@@ -14,8 +20,15 @@
 
 \begin{itemize}
 	\item Historical overview by \cite{stewart1993early}
-	\item First independent approaches in Italy \cite{beltrami1873sulle}
-	\item Second independent approaches in France \cite{Jordan1874}
+	\item Foundation by
+	\begin{itemize}
+		\item First independent approaches in Italy \cite{beltrami1873sulle}
+		\item Second independent approaches in France \cite{Jordan1874}	
+	\end{itemize}
+	\item Modern work on computational stability and effiency \cite{brunton2019data}
+	\begin{itemize}
+		\item Golub mentioned in Brutons work and Jolliffe's recap: \cite{golub1965calculating} \& \cite{golub1971singular}
+	\end{itemize}
 \end{itemize}
 
 \clearpage
@@ -27,6 +40,9 @@
 
 \begin{itemize}
 	\item Overview of the theory behind SVD
+	\item LAPACK user guide \cite{anderson1999lapack}
+	\item According to \cite{wright2001large}
+	$$\bigo{N^3}$$
 \end{itemize}
 
 \ \clearpage
@@ -37,7 +53,7 @@
 
 \begin{itemize}
 	\item scikit-learn implemented this version \cite{minka2000automatic} to guess the output dimesionality. 
-	\item \cite{halko2011finding} is used to decompose the input matrix.
+	\item \cite{halko2011finding, brunton2019data} is used to decompose the input matrix.
 \end{itemize}
 
 \ \clearpage
@@ -49,6 +65,10 @@
 \begin{itemize}
 	\item \cite{wright2001large} ARPACK approach from scikit
 	\item NOT for sparse data, not reviewed here (\href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}{scikit})
+	\item Optimal rank-r approximation to X is given thanks to the Eckart-Young theorem \cite{eckart1936approximation}
+	\item According to \cite{wright2001large, brunton2019data}
+	$$\bigo{N^2}$$
+
 \end{itemize}
 
 \ \clearpage
@@ -61,6 +81,11 @@
 \begin{itemize}
 	\item \cite{halko2011finding} scikit implementation
 	\item \cite{martinsson2011randomized} scikit implementation
+	\item \cite{brunton2019data} either capture a pre determined amount of the variance or identify transition points of singular values that give represent important patterns to noise
+	\item Increasingly important due to ever growing data set \cite{brunton2019data} (1.1)
+	\item According to this \cite{HandsOnMLCh8}
+	$$\bigo{d^3}$$
+	\item Also mentioned by Brunton: \cite{sarlos2006improved}
 \end{itemize}
 
 \ \clearpage
