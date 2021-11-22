@@ -1,35 +1,36 @@
 \subsubsection{Projection}
 
 
-% taken from ch 8 in géron's book
 
-In this section, we will compare the general solution approaches available which can be utilised to solve both linear as well as non-linear problems. \cite{HandsOnMLCh8}
+Projection can either be considered as an approach in its own or as a simple interpretation of the geometrical idea behing \gls{pca} in general.
+The idea is to project the data points onto a \gls{hyperplane} which summarises the data with as little information loss as possible.
+This newly defined hyperplane can then be considered a principal component of the data set.
 
-\todo{Not quite true, revisit this. \cite{Lee2007NonlinearDR} cite this.}
 
-\renewcommand{\tikzscale}{0.33}
-\begin{wrapfigure}[13]{r}{0.62\textwidth}
-	\vspace*{-8mm}
+\renewcommand{\tikzscale}{0.4}
+\begin{figure}[h]
 	\centering
 	\input{source/3301-projection_example.tex}
 	\captionsetup{justification=centering}
-	\caption{Simple example of a projection}
+	\vspace*{4mm}
+	\caption{Toy example of a projection}
     \label{fig:projectionExample}
-\end{wrapfigure}
-
-\paragraph{Projection} In contrast, this is the trivial concept of the two. The idea is to project the data points onto a \gls{hyperplane} which summarises the data with as little information loss as possible.
-
-Figure \ref{fig:projectionExample} illustrates this in a simple example.
-As we can observe, when we pick the right \gls{hyperplane}, such as the x axis in the example, we lose far fewer information than if we would have picked the y axis.
+\end{figure}
 
 
+Figure \ref{fig:projectionExample} illustrates this in a toy example.
+As we can observe, when we pick the right \gls{hyperplane}, such as the x axis shown above, we lose far fewer information than if we would have picked the y axis.\bigskip
 
-\begin{itemize}
-	\item \cite{tarpey1999self} has good approaches to get behind the idea of projection
-	\item minimizing the distance of orthogonal projections hints to the first principal component
-	\item Geometric interpretation of the problem 
-	\item Is a regression problem \cite{brunton2019data} (1.4)
-\end{itemize}
+
+As one might be inclined to think the idea strongly ressembles to a regression problem. 
+\citeauthor{tarpey1999self} elaborates this idea thoroughly in his paper \citetitle{tarpey1999self} \cite{tarpey1999self}.
+\citeauthor{tarpey1999self} ends his work by proposing a test for the determined ``self-consistency'' of a principal component.
+
+
+% \item \cite{tarpey1999self} has good approaches to get behind the idea of projection
+% \item minimizing the distance of orthogonal projections hints to the first principal component
+% \item Geometric interpretation of the problem 
+% \item Is a regression problem \cite{brunton2019data} (1.4)
 
 
 
