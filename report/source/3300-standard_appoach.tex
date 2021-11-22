@@ -40,7 +40,7 @@ As one might be inclined to think the idea strongly ressembles to a regression p
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Correlation and Covariance}
+\subsubsection{Correlation and Covariance} \label{section:correlationANDcovariance}
 
 As it is often true when dealing with large data set, the best suited choice for a problem depend on the given circumstances themselves and does not have a generalised answer. 
 
@@ -91,6 +91,14 @@ A detailed example is given in section 3.3 of \citeauthor{brunton2019data}'s boo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Lagrange Multipliers}
+
+Now that we have established how to compute the covariance and the correlation between two variables, we will defog how to this comes together with our large data sets.
+To simplify the scope, we will solely consider the covariance at this point.
+
+To begin with, we have to calculate the covariance between each and every variable inside a data set.
+This will result in a covariance matrix.
+% PythonMachineLearningCh1 is in fact chapter 10
+The covariance matrix, which is a square matrix \cite{PythonMachineLearningCh1}, can then be
 
 \begin{itemize}
 	\item Mentioned by \cite{jolliffe2016principal} in Section 2 (a)
