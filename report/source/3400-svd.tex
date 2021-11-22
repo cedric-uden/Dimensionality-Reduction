@@ -1,13 +1,47 @@
 \subsubsection{Introduction}
 
-\begin{itemize}
-	\item Important as modern PCA algorithms are basically a statistical application of \gls{svd}
-	\item Modern PCA is basically an applied version of SVD on a centered data matrix, decomposed into its most statistically descriptive factors
-	\item SVD generalizes the concept of the fast Fourier transform: FFT on generic basis, SVD is tailored to the specific data
-	\item Matrix factorization
-	\item Provides a numerically stable matrix decomposition which is guaranteed to exist (unlike the eigendecomposition) \cite{brunton2019data}: robust and efficient
-	\item Basis for other statistical techniques: Karhunen-Loève transform (KLT) or empirical orthogonal functions (EOFs), canonical correlation analysis (CCA)
-\end{itemize}
+After having explored the origins and early adaptations of \gls{pca}, it is time to introduce the approach used to compute \gls{pca} nowadays: using the \acrlong{svd}.
+For this, we will take a look at how \gls{pca} is implemented in \gls{scikit} and quickly observe that all variations rely on \gls{svd} internally.\bigskip
+
+
+In a sense, the \gls{svd} generalises the ideas behind the fast Fourier transform.
+For example used in media compression algorithms. 
+Whereas the fast Fourier transform provides a generic approximation for a data set, the \gls{svd} can be seen as a data-driven technique.
+The \gls{svd} adapts itself to the data set as a whole.
+\bigskip
+
+
+Generally speaking, the \gls{svd} is a form of matrix decomposition in which the matrix is arranged into its most statistically descriptive factors.
+The primary advantage of the \gls{svd} is the efficiency and versatility of applications it can be used in.
+
+The efficiency is key for ever growing data sets that are available and collected in modern times.
+The versatility is a neat byproduct and conveyor of its popularity, because the different flavours \gls{svd} comes in and provides vast combinations of benefits and drawbacks.
+These characteristics can furthermore be tailored to a specific problem in order to either optimise it or to make it feasible to begin with.
+
+Additionally, one major advantage from \gls{svd} over other approaches, such as the standard approach from section \ref{section:standardApproach}, is that the \gls{svd} provides a robust matrix which is guaranteed to exist \cite{brunton2019data}.\bigskip
+
+
+
+To get an idea of how \gls{pca} and \gls{svd} are related to each other, a brief description is that \gls{pca} is a statistical application of an \gls{svd} \cite{brunton2019data}.
+\Gls{pca} performs one additional task in contrast to a classical \gls{svd}: the data is centered prior to its application.
+The \gls{svd} in general provides a hierarchical representation of the data inside a new matrix which is defined by dominant correlations within a given data set.
+\bigskip
+
+
+
+To end our introduction, it is interesting to know that the \gls{svd} provides the basis for other statistical techniques.
+These include the Karhunen-Loève transform (KLT), empirical orthogonal functions (EOFs) and canonical correlation analysis (CCA).
+As these techniques are not closely related to \gls{pca}, none of these will be refered to in this work.
+
+
+
+
+% \item Important as modern PCA algorithms are basically a statistical application of \gls{svd}
+% \item Modern PCA is basically an applied version of SVD on a centered data matrix, decomposed into its most statistically descriptive factors
+% \item SVD generalizes the concept of the fast Fourier transform: FFT on generic basis, SVD is tailored to the specific data
+% \item Matrix factorization
+% \item Provides a numerically stable matrix decomposition which is guaranteed to exist (unlike the eigendecomposition) \cite{brunton2019data}: robust and efficient
+% \item Basis for other statistical techniques: Karhunen-Loève transform (KLT) or empirical orthogonal functions (EOFs), canonical correlation analysis (CCA)
 
 \clearpage
 
