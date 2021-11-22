@@ -52,15 +52,15 @@ Therefore, we will begin by looking at the definitions of the covariance and cor
 {\setstretch{3}
 \begin{align}
 	\label{formula:covariance}
-	Cov(X,Y) &= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (x_i - \mu_X)\cdot(y_i - \mu_Y)\bigskip
+	Cov(X,Y) &= \frac{1}{n} \cdot \displaystyle\sum_{i=0}^{n} (x_i - \overline{x})\cdot(y_i - \overline{y})\bigskip
 	\\
 	\label{formula:correlation}
-	Corr(X,Y) &= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} \frac{(x_i - \mu_X)}{\sigma_X}\cdot\frac{(y_i - \mu_Y)}{\sigma_Y}
+	Corr(X,Y) &= \frac{1}{n} \cdot \displaystyle\sum_{i=0}^{n} \frac{(x_i - \overline{x})}{\sigma_X}\cdot\frac{(y_i - \overline{y})}{\sigma_Y}
 \end{align}
 }
 
 \vspace{-10mm}
-With $X$ and $Y$ being two series of variables, $x_i$ and $y_i$ their members, $n$ the size of the series, $\mu$ the respective mean and $\sigma$ the respective standard deviation of the series.
+With $X$ and $Y$ being two series of variables, $x_i$ and $y_i$ their members, $n$ the size of the series, $\overline{x}$ and $\overline{y}$ the mean and $\sigma$ the respective standard deviation of the series.
 
 As we can observe, the definitions are tied to each other. By factoring out $\sigma_X$ and $\sigma_Y$, the correlation can be rewritten as:
 
