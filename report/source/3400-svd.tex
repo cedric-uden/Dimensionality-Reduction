@@ -71,6 +71,52 @@ As these techniques are not closely related to \gls{pca}, none of these will be 
 
 \subsubsection{General idea}
 
+The general idea behind the \gls{svd} is to analyse large matrices which represent data sets such as  $A \in \mathbb{R}^{n \times m}$ represented in \reff{svdMatrixShape}:
+
+\begin{equation}
+	\label{formula:svdMatrixShape}
+	A = 
+	\begin{bmatrix}
+		\mid & \mid & & \mid\\
+		x_1 & x_2 & \cdots & x_m\\
+		\mid & \mid & & \mid\\
+	\end{bmatrix}
+\end{equation}
+
+\vspace*{4mm}
+
+The matrix is then decomposed into three parts:
+
+\vspace{-6mm}
+\begin{align}
+	\label{formula:svdBasic}
+	A = U \Sigma V^T
+\end{align}
+
+$U \in \mathbb{R}^{n \times n}$ and $V \in \mathbb{R}^{m \times m}$ are unitary matrices with orthogonal columns.
+The colums of $U$ are called the \emph{left-singular vectors} of $A$ and $V$ are the \emph{right-singular vectors} of $A$.
+$\Sigma^{n \times m}$ contains non-negative entries on the diagonal with zeros everywhere else.
+The non-negative entires in $\Sigma$ are called the \emph{singular values} and are ordered from largest to slowest importance from 1 to $m$ \cite{brunton2019data}.
+\bigskip
+
+
+$U$ and $V$ being square matrices is achieved thanks to computing the correlation matrix from both the rows and the columns of a matrix $A$.
+
+The columns of $U$ capture the eigenvalues of the correlation matrix of $AA^T$.
+This represents the correlation between the columns of $A$.
+The columns of $V$ capture the eigenvalues of the correlation matrix of $A^TA$.
+This represents the correlation between the rows of $A$ \cite{brunton2019data}.  % section 1.3, page 13
+\bigskip
+
+
+For the next paragraph, we are assuming that $n>>m$\footnote{$n$ is significantly larger than $m$}.
+Now that we know what the decomposed matrices contain, we quickly realise the immense computational power that is required to construct the matrix $AA^T$.
+Let alone solve the eigenvalue problem to this matrix.
+
+Thankfully, \gls{svd} delivers a few different approches to either efficiently compute the eigenvalues or to accurately approximate the values.
+These methods significantly reduce the required computational resources.
+In order to contrast this, the following methods that will be considered will compare the runtime complexity.
+
 
 
 \clearpage
