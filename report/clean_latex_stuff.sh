@@ -4,7 +4,7 @@
 # and then delete it
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-cd $DIR
+cd "$DIR"
 
 # put all extensions to delete in an array
 extensions=(	
