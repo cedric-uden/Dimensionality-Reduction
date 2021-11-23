@@ -68,7 +68,139 @@ If a set number of \gls{pc} is requested, the solver will be set on \texttt{`ran
 
 \subsubsection{Full SVD}
 
-First and foremost, we will take a look at the most straightforward approach. 
+To get a detailed overview of the different solvers, we will start with the default value which is simultaneously the most prominent one.
+Following \gls{scikit}'s documentation, we know that \cite{scikit-learn} implements the standard LAPACK solver via \texttt{scipy.linalg.svd}.
+\bigskip
+
+LAPACK is an acronym for Linear Algebra Package and is a library of Fortran 77 subroutines which solves most commonly occuring problems in linear algebra \cite{anderson1999lapack}.
+It is designed to be maximally efficient on the whole spectrum of modern computers, with a particular focus on high-performance computers.
+
+In order to understand the parameters and interfaces the data passes through, we will retrace the entire path from \gls{scikit} to LAPACK in their respective implementations.
+
+
+\begin{lstlisting}[
+inputencoding={utf8}, 
+extendedchars=false, 
+language=python,
+firstnumber=465,
+]
+def _fit_full(self, X, n_components):
+\end{lstlisting}
+%
+%
+%
+\spacingConcatLists
+\begin{lstlisting}[language=python, numbers=none]
+     # [...]
+\end{lstlisting}
+%
+%
+%
+\spacingConcatLists
+\begin{lstlisting}[
+inputencoding={utf8}, 
+extendedchars=false, 
+language=python, 
+caption=sklearn to scipy, 
+label=lst:sklearnTOscipy,
+firstnumber=489,
+]
+    self.mean_ = np.mean(X, axis=0)
+    X -= self.mean_
+
+    U, S, Vt = linalg.svd(X, full_matrices=False)
+\end{lstlisting}
+
+
+
+\noindent
+The \gls{scikit} version in consideration is \href{\scikitPCAvIxOxI}{1.0.1}.
+Here we can see that the data is centered in a first step before being handed over to scipy in the last line of listing \ref{lst:sklearnTOscipy}.
+Next up, we will look at where the data enters \texttt{scipy} (\href{\scipyvIxVIIxII}{version 1.7.2}).
+
+
+
+\begin{lstlisting}[
+inputencoding={utf8}, 
+extendedchars=false, 
+language=python,
+firstnumber=13,
+]
+def svd(a, full_matrices=True, compute_uv=True, overwrite_a=False,
+        		check_finite=True, lapack_driver='gesdd'):
+\end{lstlisting}
+%
+%
+%
+\spacingConcatLists
+\begin{lstlisting}[language=python, numbers=none]
+    # [...]
+\end{lstlisting}
+%
+%
+%
+\spacingConcatLists
+\begin{lstlisting}[
+inputencoding={utf8}, 
+extendedchars=false, 
+language=python,
+firstnumber=108,
+]
+    a1 = _asarray_validated(a, check_finite=check_finite)
+\end{lstlisting}
+%
+%
+%
+\spacingConcatLists
+\begin{lstlisting}[language=python, numbers=none]
+    # [...]
+\end{lstlisting}
+%
+%
+%
+\spacingConcatLists
+\begin{lstlisting}[
+inputencoding={utf8}, 
+extendedchars=false, 
+language=python,
+firstnumber=119,
+]
+    funcs = (lapack_driver, lapack_driver + '_lwork')
+    gesXd, gesXd_lwork = get_lapack_funcs(funcs, (a1,), ilp64='preferred')
+\end{lstlisting}
+%
+%
+%
+\spacingConcatLists
+\begin{lstlisting}[language=python, numbers=none]
+    # [...]
+\end{lstlisting}
+%
+%
+%
+\spacingConcatLists
+\begin{lstlisting}[
+inputencoding={utf8}, 
+extendedchars=false, 
+language=python, 
+caption=scipy to LAPACK, 
+label=lst:scipyToLAPACK,
+firstnumber=127,
+]
+    u, s, v, info = gesXd(a1, compute_uv=compute_uv, lwork=lwork,
+                full_matrices=full_matrices, overwrite_a=overwrite_a)
+\end{lstlisting}
+
+
+
+\noindent
+To start of the procedure, the matrix is first checked by \texttt{scipy} to make sure that the input does not contain any infinities or \texttt{NaN}s (line 108 in listing \ref{lst:scipyToLAPACK}).
+Then, the adequate subroutine call to LAPACK is returned into the current scope based on the keyword \texttt{`lapack\_driver`}.
+
+Finally, the matrix is handed over to the LAPACK routine where it is being solved based on its selected driver.
+We will now look at what is hiding behind the intials \texttt{`gesXd`}.
+
+\clearpage
 
 \begin{itemize}
 	\item Overview of the theory behind SVD
@@ -79,8 +211,7 @@ First and foremost, we will take a look at the most straightforward approach.
 	$$\bigo{N^3}$$
 \end{itemize}
 
-\ \clearpage
-\ \clearpage
+\clearpage
 
 
 \subsubsection{Minka's method to approximate intrinsic dimension} \label{sec:mle}
