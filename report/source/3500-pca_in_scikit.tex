@@ -9,7 +9,7 @@ All of these can be set manually, or if set to \texttt{`auto`}, scikit will choo
 \bigskip
 
 The current implementation looks as following:%
-\footnote{\href{\scikitPCAvIxOxI}{\texttt{sklearn.decomposition.PCA} (v. 1.0.1)}}
+\footnote{\href{\scikitPCAvIxOxI{_pca}}{\texttt{sklearn.decomposition.PCA} (v. 1.0.1)}}
 
 
 
@@ -114,9 +114,9 @@ firstnumber=489,
 
 
 \noindent
-The \gls{scikit} version in consideration is \href{\scikitPCAvIxOxI}{1.0.1}.
+The \gls{scikit} version in consideration is \href{\scikitPCAvIxOxI{_pca}}{1.0.1}.
 Here we can see that the data is centered in a first step before being handed over to scipy in the last line of listing \ref{lst:sklearnTOscipy}.
-Next up, we will look at where the data enters \texttt{scipy} (\href{\scipyvIxVIIxII}{version 1.7.2}).
+Next up, we will look at where the data enters \texttt{scipy} (\href{\scipyvIxVIIxII{decomp_svd}}{version 1.7.2}).
 
 
 
@@ -199,17 +199,46 @@ Then, the adequate subroutine call to LAPACK is returned into the current scope 
 
 Finally, the matrix is handed over to the LAPACK routine where it is being solved based on its selected driver.
 We will now look at what is hiding behind the intials \texttt{`gesXd`}.
+\bigskip
 
-\clearpage
+Generally, LAPACK's names for routines are six digits long due to the character limitation imposed by standard Fortran 77.
+All drivers and computational routines follow the form of \texttt{XYYZZZ} where \texttt{X} describes the data type, \texttt{YY} the type of matrix and \texttt{ZZZ} the performed computation \cite{anderson1999lapack}.
+In \texttt{scipy}'s implementation, the first letter is not considered yet as it will be automatically detected later on in the file \href{\scipyvIxVIIxII{blas}}{\texttt{blas.py}} as following in listing \ref{lst:findBestDataType}:
 
-\begin{itemize}
-	\item Overview of the theory behind SVD
-	\item scikit implements the svd from LAPACK
-	\item scikit uses the LAPACK interface from \cite{2020SciPy} 
-	\item LAPACK user guide \cite{anderson1999lapack}
-	\item According to \cite{wright2001large}
-	$$\bigo{N^3}$$
-\end{itemize}
+\begin{lstlisting}[
+inputencoding={utf8}, 
+extendedchars=false, 
+language=python, 
+caption=scipy detect best data type, 
+label=lst:findBestDataType,
+firstnumber=345,
+]
+prefix, dtype, prefer_fortran = find_best_blas_type(arrays, dtype)
+\end{lstlisting}
+
+After finding the best suited data type in \texttt{scipy}, the characters \texttt{ge} in LAPACK describe a general matrix (i.e. unsymmetric and potentially rectangular).
+Ultimately, the characters \texttt{sXd} describe two different routines to solve an \gls{svd}.
+\texttt{svd} refers to the so called \emph{simple driver}, the function is refered to as \texttt{xGESVD} in LAPACK.
+\texttt{sdd} refers to the \emph{divide and conquer driver} offered by LAPACK, refered to as \texttt{xGESDD}.
+\medskip
+
+The \emph{divide and conquer driver} solves the same problem as the simple driver.
+Albeit, it is much faster than the simple driver but requires more computational resources.
+This routine is chosen by default when calling \texttt{scipy.linalg.svd}, which is exactly what \gls{scikit} does in listing \ref{lst:scipyToLAPACK}.
+
+The full details on the algorithm is found in section 3.4.3 in \citetitle{anderson1999lapack} \cite{anderson1999lapack} and the implementation in Fortran is found in ``Part 2 - Specifications of Routines''.
+\bigskip
+
+And indeed, the results are remarkable: \texttt{xGESVD}, has a complexity of $\bigo{n^3}$ \cite{wright2001large}.
+This routine is still the default when calling an \gls{svd} in Matlab for example.
+\texttt{xGESDD} on the other hand, is able to cut down the complexity significantly and achieves the task in $\bigo{n^2}$.
+
+% \item Overview of the theory behind SVD
+% \item scikit implements the svd from LAPACK
+% \item scikit uses the LAPACK interface from \cite{2020SciPy} 
+% \item LAPACK user guide \cite{anderson1999lapack}
+% \item According to \cite{anderson1999lapack}
+% $$\bigo{N^2}$$
 
 \clearpage
 
@@ -231,6 +260,7 @@ We will now look at what is hiding behind the intials \texttt{`gesXd`}.
 	\item \cite{wright2001large} ARPACK approach from scikit
 	\item NOT for sparse data, not reviewed here (\href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}{scikit})
 	\item Optimal rank-r approximation to X is given thanks to the Eckart-Young theorem \cite{eckart1936approximation}
+	()
 	\item According to \cite{wright2001large, brunton2019data}
 	$$\bigo{N^2}$$
 
