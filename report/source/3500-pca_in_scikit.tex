@@ -243,7 +243,17 @@ This routine is still the default when calling an \gls{svd} in Matlab for exampl
 \clearpage
 
 
-\subsubsection{Minka's method to approximate intrinsic dimension} \label{sec:mle}
+\subsubsection{Minka's Automatic Choice of Dimensionality for PCA} \label{sec:mle}
+
+One key issue in \acrlong{pca} is how to decide on which \glspl{pc} to keep.
+When our goal is to visualise data, the answer might be trivial: 2 or 3, since higher dimensionality is difficult to picture.
+But when our goal is efficient computation, the answer is quite more complicated and is tensioned between significantly faster results versus more required computational power.
+\bigskip
+
+
+For this, \citeauthor{minka2000automatic} has proposed an estimation which is alleged to be efficient yet precise \cite{minka2000automatic}.
+To achieve this, he developed a Bayesian 
+
 
 \begin{itemize}
 	\item scikit-learn implemented this version \cite{minka2000automatic} to guess the output dimesionality. 
