@@ -12,13 +12,43 @@ The current implementation looks as following:%
 \footnote{\href{\scikitPCAvIxOxI}{\texttt{sklearn.decomposition.PCA} (v. 1.0.1)}}
 
 
-\begin{lstlisting}[inputencoding={utf8}, extendedchars=false, escapeinside='', language=python, caption=scikit implementation to select\\an adequate PCA solver (lines 447--453), label=lst:autoPCA]
+
+
+
+
+\begin{lstlisting}[
+inputencoding={utf8}, 
+extendedchars=false, 
+language=python,
+firstnumber=447,
+]
 if max(X.shape) <= 500 or n_components == "mle":
     self._fit_svd_solver = "full"
 elif n_components >= 1 and n_components < 0.8 * min(X.shape):
     self._fit_svd_solver = "randomized"
+\end{lstlisting}
+%
+%
+%
+\spacingConcatLists
+\begin{lstlisting}[language=python, numbers=none]
+# [...]
+\end{lstlisting}
+%
+%
+%
+\spacingConcatLists
+\begin{lstlisting}[
+inputencoding={utf8}, 
+extendedchars=false, 
+language=python, 
+caption=scikit implementation to select\\an adequate PCA solver, 
+label=lst:autoPCA,
+firstnumber=452,
+]
 else:
-    self._fit_svd_solver = "full"\end{lstlisting}
+    self._fit_svd_solver = "full"
+\end{lstlisting}
 
 
 \medskip\noindent
