@@ -1,4 +1,44 @@
-\subsubsection{PCA in Scikit: LAPACK / Full SVD}
+Now that we are familiar with the ideas behind \gls{svd} and aware of the connection between \gls{pca} and \gls{svd}, it is time to see how \gls{pca} is implemented in \gls{scikit}.
+We will explore three different possible solvers to decompose large matrices and evaluate their strengths and weaknesses.
+\bigskip
+
+
+
+In order to select the right solver for the problem, which are all based on \gls{svd}, \gls{scikit}'s \texttt{PCA} class provides the keyword argument \texttt{`solver`} to set one of the following strings: \texttt{`auto`, `full`, `randomized`, `arpack`}.
+All of these can be set manually, or if set to \texttt{`auto`}, scikit will choose the one it deems fitting.
+\bigskip
+
+The current implementation looks as following:%
+\footnote{\href{\scikitPCAvIxOxI}{\texttt{sklearn.decomposition.PCA} (v. 1.0.1)}}
+
+
+\begin{lstlisting}[inputencoding={utf8}, extendedchars=false, escapeinside='', language=python, caption=scikit implementation to select\\an adequate PCA solver (lines 447--453), label=lst:autoPCA]
+if max(X.shape) <= 500 or n_components == "mle":
+    self._fit_svd_solver = "full"
+elif n_components >= 1 and n_components < 0.8 * min(X.shape):
+    self._fit_svd_solver = "randomized"
+else:
+    self._fit_svd_solver = "full"\end{lstlisting}
+
+
+\medskip\noindent
+As we can see in listing \ref{lst:autoPCA} above, the choice of the adequate solver is primarily dependent on the parameter \texttt{`n\_components`}.
+This keyword allows us to explicitly declare the number of \acrlongpl{pc} to keep.
+
+\texttt{`n\_components`} accepts either a \texttt{float}, which will select the number of components such that the quota of variance desired is reached; an \texttt{int}, which will select as many principal components; or the string \texttt{`mle`}, which estimates a reasonable number of \gls{pc} to keep and will be discussed in greater detail in the upcoming section \ref{sec:mle}.
+\bigskip
+
+
+If the number of \gls{pc} to choose is either not declared or a quota of variance is desired, the solver will always choose \texttt{`full`}.
+If a set number of \gls{pc} is requested, the solver will be set on \texttt{`randomized`} as long as the number of \gls{pc} is lower than 80\% of the smallest dimension of the data set.
+
+
+\ \clearpage
+
+
+\subsubsection{Full SVD}
+
+First and foremost, we will take a look at the most straightforward approach. 
 
 \begin{itemize}
 	\item Overview of the theory behind SVD
@@ -13,7 +53,7 @@
 \ \clearpage
 
 
-\paragraph{Minka's method to approximate intrinsic dimension}
+\subsubsection{Minka's method to approximate intrinsic dimension} \label{sec:mle}
 
 \begin{itemize}
 	\item scikit-learn implemented this version \cite{minka2000automatic} to guess the output dimesionality. 
