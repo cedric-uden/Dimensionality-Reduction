@@ -1,0 +1,132 @@
+\usetikzlibrary{arrows,automata}
+
+
+\newcommand{\scikitURL}{https://github.com/scikit-learn/scikit-learn/blob/1.0.1/sklearn/decomposition/_pca.py}
+
+\newcommand{\scipyLink}[2]{\href{https://github.com/scipy/scipy/blob/v1.7.2/scipy/sparse/linalg/eigen/arpack/arpack.py\#L#2}{\texttt{#1}}}
+
+\newcommand{\scipyLinkAndNumber}[1]{\href{https://github.com/scipy/scipy/blob/v1.7.2/scipy/sparse/linalg/eigen/arpack/arpack.py\#L#1}{l. #1}}
+
+
+
+
+
+\begin{tikzpicture}[
+scale=\tikzscale,
+every node/.style={scale=\tikzscale},
+->,
+>=stealth
+,shorten >=1pt,
+auto,
+node distance=110pt,
+semithick,
+]
+
+
+  \tikzstyle{every state}=[
+  fill=white,
+  draw=black,
+  text=black,
+  minimum size = 60pt,
+  ]
+
+
+
+  \node[state]
+  (A)
+  {\href{\scikitURL}{\texttt{scikit}}};
+
+
+  \node[state]
+  (B) [right of=A]
+  {\scipyLink{svds}{1727}};
+
+
+  \node[state]
+  (C) [right of=B]
+  {\scipyLink{eigsh}{1351}};
+
+
+  \node[state]
+  (D) [right of=C]
+  {LAPACK};
+
+  \node[state]
+  (E) [above of=D, yshift=-35pt]
+  {Complex};
+
+  \node[state]
+  (F) [below of=D, yshift=35pt]
+  {\scipyLink{\_SAP}{379} \footnotemark};
+
+  \node[state]
+  (G) [right of=F]
+  {\texttt{SAUPD}};
+
+
+
+
+
+  \path
+
+        (A)
+            edge
+              %
+            node
+              {\href{\scikitURL\#L571}{l. 571}}
+        (B)
+
+
+
+
+        (B)
+            edge
+              %
+            node
+              {\scipyLinkAndNumber{1869}}
+        (C)
+
+
+
+
+        (C)
+            edge
+              [bend left]
+            node
+              {\scipyLinkAndNumber{1567}}
+        (E)
+
+
+
+
+        (C)
+            edge
+              %
+            node
+              {\scipyLinkAndNumber{1608}}
+        (D)
+
+
+
+
+        (C)
+            edge
+              [bend right]
+            node
+              [xshift=-50pt, yshift=-10pt]
+              {\scipyLinkAndNumber{1684}}
+        (F)
+
+
+
+
+        (F)%
+            edge%
+              %
+            node%
+              {\scipyLinkAndNumber{526}}%
+        (G)
+        ;
+
+
+\end{tikzpicture}

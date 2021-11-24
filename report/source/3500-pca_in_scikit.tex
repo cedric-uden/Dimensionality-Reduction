@@ -287,6 +287,8 @@ The function \texttt{\_assess\_dimensions} in lines 30 -- 101 in the module \hre
 Next in line, we will see why \gls{scikit} refers to \texttt{scipy.sparse.linalg.svds} when choosing the solver \texttt{`arpack`}. 
 ARPACK stands for Arnoldi Package and is a different collection of Fortran 77 routines and partly dependent on LAPACK.
 It is designed to exclusively solve large-scale eigenvalue problems \cite{lehoucq1998arpack}.
+\medskip
+
 
 We will now again trace the flow of data from \gls{scikit} through \texttt{scipy} into the package where it is being processed. This starts again the the \href{\scikitPCAvIxOxI{_pca}}{\texttt{\_pca}} module:
 
@@ -305,8 +307,25 @@ if svd_solver == "arpack":
 
 \noindent
 The call to \texttt{\_init\_arpack\_v0} will sample random vectors from the uniform distribution of the data.
-The parameter \texttt{random\_state} will make sure that the random vectors are only pseudo-random and provide a reproducible result.
+The parameter \texttt{random\_state} will make sure that the random vectors are only pseudorandom and provide a deterministic result.
 Following the simple preparation, the data is then handed over to \texttt{scipy.sparse.linalg.svds}.
+\bigskip
+
+\renewcommand{\tikzscale}{0.75}
+\begin{figure}[h]
+	\centering
+	\input{source/3531-flow_scikit_to_arpack.tex}
+	\captionsetup{justification=centering}
+	\vspace*{5mm}
+	\caption{From scikit to ARPACK.}
+	\label{fig:scikitToARPACK}
+\end{figure}
+
+\footnotetext{\texttt{\_SymmetricArpackParams}}
+
+
+\bigskip
+
 
 \clearpage
 
