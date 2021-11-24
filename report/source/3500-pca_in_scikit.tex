@@ -285,8 +285,8 @@ The function \texttt{\_assess\_dimensions} in lines 30 -- 101 in the module \hre
 \subsubsection{ARPACK / truncated SVD}
 
 Next in line, we will see why \gls{scikit} refers to \texttt{scipy.sparse.linalg.svds} when choosing the solver \texttt{`arpack`}. 
-ARPACK stands for Arnoldi Package and is a different collection of Fortran 77 routines and partly dependent on LAPACK.
-It is designed to exclusively solve large-scale eigenvalue problems \cite{lehoucq1998arpack}.
+ARPACK stands for Arnoldi Package and is a different collection of Fortran 77 routines and partially dependent on LAPACK.
+It is designed exclusively to solve large-scale eigenvalue problems \cite{lehoucq1998arpack}.
 \medskip
 
 
@@ -308,7 +308,7 @@ if svd_solver == "arpack":
 \noindent
 The call to \texttt{\_init\_arpack\_v0} will sample random vectors from the uniform distribution of the data.
 The parameter \texttt{random\_state} will make sure that the random vectors are only pseudorandom and provide a deterministic result.
-Following the simple preparation, the data is then handed over to \texttt{scipy.sparse.linalg.svds}.
+Now, we will take a  look at how the data is traversing \texttt{scipy} after being called in line 571 of listing \ref{lst:scikitTOscipy}.
 \bigskip
 
 \renewcommand{\tikzscale}{0.75}
@@ -320,12 +320,14 @@ Following the simple preparation, the data is then handed over to \texttt{scipy.
 	\caption{From scikit to ARPACK.}
 	\label{fig:scikitToARPACK}
 \end{figure}
-
 \footnotetext{\texttt{\_SymmetricArpackParams}}
-
-
 \bigskip
 
+
+Now, we will describe what each node in figure \ref{fig:scikitToARPACK} represents.
+\begin{itemize}
+	\item Starting in \texttt{scikit}, we arrive in the second node \texttt{svds}, which represents a function in the \texttt{scipy} module \texttt{scipy.sparse.linalg.svds}.
+\end{itemize}
 
 \clearpage
 
