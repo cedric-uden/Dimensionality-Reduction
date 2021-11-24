@@ -284,18 +284,43 @@ The function \texttt{\_assess\_dimensions} in lines 30 -- 101 in the module \hre
 
 \subsubsection{ARPACK / truncated SVD}
 
+Next in line, we will see why \gls{scikit} refers to \texttt{scipy.sparse.linalg.svds} when choosing the solver \texttt{`arpack`}. 
+ARPACK stands for Arnoldi Package and is a different collection of Fortran 77 routines and partly dependent on LAPACK.
+It is designed to exclusively solve large-scale eigenvalue problems \cite{lehoucq1998arpack}.
+
+We will now again trace the flow of data from \gls{scikit} through \texttt{scipy} into the package where it is being processed. This starts again the the \href{\scikitPCAvIxOxI{_pca}}{\texttt{\_pca}} module:
+
+\begin{lstlisting}[
+inputencoding={utf8}, 
+extendedchars=false, 
+language=python, 
+caption=scikit to scipy, 
+label=lst:scikitTOscipy,
+firstnumber=569,
+]
+if svd_solver == "arpack":
+    v0 = _init_arpack_v0(min(X.shape), random_state)
+    U, S, Vt = svds(X, k=n_components, tol=self.tol, v0=v0)
+\end{lstlisting}
+
+\noindent
+The call to \texttt{\_init\_arpack\_v0} will sample random vectors from the uniform distribution of the data.
+The parameter \texttt{random\_state} will make sure that the random vectors are only pseudo-random and provide a reproducible result.
+Following the simple preparation, the data is then handed over to \texttt{scipy.sparse.linalg.svds}.
+
+\clearpage
+
+
 \begin{itemize}
-	\item \cite{wright2001large} ARPACK approach from scikit
-	\item NOT for sparse data, not reviewed here (\href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}{scikit})
-	\item Optimal rank-r approximation to X is given thanks to the Eckart-Young theorem \cite{eckart1936approximation}
-	()
-	\item According to \cite{wright2001large, brunton2019data}
+	% \item \cite{wright2001large} ARPACK approach from scikit
+	% \item NOT for sparse data, not reviewed here (\href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}{scikit})
+	% \item Optimal rank-r approximation to X is given thanks to the Eckart-Young theorem \cite{eckart1936approximation}
+	\item According to \cite{brunton2019data, wright2001large}
 	$$\bigo{N^2}$$
 
 \end{itemize}
 
-\ \clearpage
-\ \clearpage
+\clearpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
