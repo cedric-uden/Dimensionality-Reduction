@@ -252,13 +252,31 @@ But when our goal is efficient computation, the answer is quite more complicated
 
 
 For this, \citeauthor{minka2000automatic} has proposed an estimation which is alleged to be efficient yet precise \cite{minka2000automatic}.
-To achieve this, he developed a Bayesian 
+To compute this approximation, we are starting from a Bayesian model assumption which states that the probability of the data $D$, given a model $M$, is found by finding the line integral over the parameter $\theta$:
+
+\begin{equation}
+	\label{formula:minkaMLE}
+	p(D | M) = \int_\theta \ p(D | \theta)\ p(\theta | M)\ d\theta
+\end{equation}
+
+\medskip\noindent
+This integral can then be approximated efficiently using a Laplace approximation.
+\bigskip
+
+To round this up, \citeauthor{minka2000automatic} tested the performance is various samples.
+He used data-rich and sparse data as well as data sets with varying signal-to-noise ratios.
+
+The results are exceptional, while not always scoring best amongst all different algorithms for model selection, his approach is able to consistently show remarkable results.
+This is opposing to other algorithms which perform well on a specific shape of data, but utterly fail in different categories.
 
 
-\begin{itemize}
-	\item scikit-learn implemented this version \cite{minka2000automatic} to guess the output dimesionality. 
-	\item \cite{halko2011finding, brunton2019data} is used to decompose the input matrix.
-\end{itemize}
+
+\bigskip
+The function \texttt{\_assess\_dimensions} in lines 30 -- 101 in the module \href{\scikitPCAvIxOxI{_pca}}{\texttt{\_pca} in version 1.0.1} in \gls{scikit} implements \citeauthor{minka2000automatic}'s proposed estamation.
+
+
+% \item scikit-learn implemented this version \cite{minka2000automatic} to guess the output dimesionality. 
+% \item \cite{halko2011finding, brunton2019data} is used to decompose the input matrix.
 
 \ \clearpage
 
