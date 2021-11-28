@@ -66,7 +66,7 @@ If a set number of \gls{pc} is requested, the solver will be set on \texttt{`ran
 \ \clearpage
 
 
-\subsubsection{Full SVD}
+\subsubsection{Full SVD} \label{sec:fullSVD}
 
 To get a detailed overview of the different solvers, we will start with the default value which is simultaneously the most prominent one.
 Following \gls{scikit}'s documentation, we know that \cite{scikit-learn} implements the standard LAPACK solver via \texttt{scipy.linalg.svd}.
@@ -307,11 +307,11 @@ if svd_solver == "arpack":
 
 \noindent
 The call to \texttt{\_init\_arpack\_v0} will sample random vectors from the uniform distribution of the data.
-The parameter \texttt{random\_state} will make sure that the random vectors are only pseudorandom and provide a deterministic result.
+The parameter \texttt{random\_state} will make sure that the random vectors are merely pseudorandom and provide a deterministic result.
 Now, we will take a  look at how the data is traversing \texttt{scipy} after being called in line 571 of listing \ref{lst:scikitTOscipy}.
 \bigskip
 
-\renewcommand{\tikzscale}{0.75}
+\renewcommand{\tikzscale}{0.65}
 \begin{figure}[h]
 	\centering
 	\input{source/3531-flow_scikit_to_arpack.tex}
@@ -324,22 +324,38 @@ Now, we will take a  look at how the data is traversing \texttt{scipy} after bei
 \bigskip
 
 
-Now, we will describe what each node in figure \ref{fig:scikitToARPACK} represents.
+Now, we will describe what each node in figure \ref{fig:scikitToARPACK} represents:
 \begin{itemize}
-	\item Starting in \texttt{scikit}, we arrive in the second node \texttt{svds}, which represents a function in the \texttt{scipy} module \texttt{scipy.sparse.linalg.svds}.
+	\item Starting in \texttt{scikit}, we arrive in the second node \texttt{svds}, which is the function being called in the \texttt{scipy} module \texttt{scipy.sparse.linalg.svds}.
+	\item \texttt{svds} then analyses the shape of the matrix in order to determine the most efficient sequence of multiplication (either $A^TA$ or $AA^T$) before passing it to the next function \texttt{eigsh}.
+	\item \texttt{eigsh} then verifies the content of the matrix and chooses the adequate ARPACK driver:
+	\begin{itemize}
+		\item If the matrix is identified an Hermitian (complex) matrix, then the complex driver is used. As we are only focusing on real (symmetric) matrices, this step wont be considered any further.
+		\item If the matrix is identified to be rectangular instead of squared, the function is handed to a LAPACK driver instead
+		\item If the matrix is indeed symmetric as expected, then the matrix is processed by the function \texttt{\_SymmetricArpackParams} (\texttt{\_SAP}) and then handed over to the \texttt{SAUPD} driver.
+	\end{itemize}
 \end{itemize}
 
-\clearpage
+The \texttt{SAUPD} driver in ARPACK then solves the eigenproblem as a variant of the Lanczos method.
+The Lanczos method is designed to compute approximations to a few eigenvalues and eigenvectors of a symmetric matrix \cite{lehoucq1998arpack}.
 
+\texttt{SAUPD} can then be finetuned with various parameters such as \texttt{WHICH} to computed the smallest or largest eigenvalues first, \texttt{NEV} to set the numbers of eigenvalues to be computed, \texttt{TOL} to set the tolerance of the precision for floating point numbers.
+\bigskip
 
-\begin{itemize}
-	% \item \cite{wright2001large} ARPACK approach from scikit
-	% \item NOT for sparse data, not reviewed here (\href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}{scikit})
-	% \item Optimal rank-r approximation to X is given thanks to the Eckart-Young theorem \cite{eckart1936approximation}
-	\item According to \cite{brunton2019data, wright2001large}
-	$$\bigo{N^2}$$
+To sum up the ARPACK method, it is a procedure to approximate the decomposition of a matrix.
+Thanks to the approximation, the runtime does not exceed $\bigo{N^2}$ \cite{brunton2019data, wright2001large}.
 
-\end{itemize}
+Knowing the \texttt{xGESDD} method from LAPACK from the previous section \ref{sec:fullSVD}, the ARPACK approaches primary benefit is its lenient resource utilisation \cite{anderson1999lapack}.
+This makes it a lot more suited for large scale problems while simultaneously explaining why \gls{scikit} does not implement it by default using the \texttt{auto} solver.
+
+\vspace*{20mm}
+
+% \item \cite{wright2001large} ARPACK approach from scikit
+% \item NOT for sparse data, not reviewed here (\href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}{scikit})
+% \item Optimal rank-r approximation to X is given thanks to the Eckart-Young theorem \cite{eckart1936approximation}
+% \item According to \cite{brunton2019data, wright2001large}
+% $$\bigo{N^2}$$
+% \item but the $\bigo{N^2}$ from the \texttt{SEGSDD} requires more resources \cite{anderson1999lapack}
 
 \clearpage
 
