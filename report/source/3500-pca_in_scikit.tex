@@ -363,16 +363,122 @@ This makes it a lot more suited for large scale problems while simultaneously ex
 
 \subsubsection{Randomized SVD}
 
-\begin{itemize}
-	\item \cite{halko2011finding} scikit implementation
-	\item \cite{martinsson2011randomized} scikit implementation
-	\item \cite{brunton2019data} either capture a pre determined amount of the variance or identify transition points of singular values that give represent important patterns to noise
-	\item Increasingly important due to ever growing data set \cite{brunton2019data} (1.1)
-	\item According to this \cite{HandsOnMLCh8}
-	$$\bigo{d^3}$$
-	\item Also mentioned by Brunton: \cite{sarlos2006improved}
-\end{itemize}
 
-\ \clearpage
-\ \clearpage
+As a last approach to establishing a \acrlong{svd} of a matrix, we will take a look at opportunities that are made possible by random sampling. 
+The primary driver to random methods are the increasingly vast measurements available across many different disciplines.
 
+Fortunately, the intrinsic rank of the data does not increase significantly if at all.
+Thanks to this awareness, randomised numerical methods provide an accurate matrix decomposition at a fraction of the cost of the previously introduced models \cite{brunton2019data}.
+Over the past two decades, there have been numerous different propositions to randomised algorithms.
+\medskip
+
+One that has emerged in a wide range of disciplines has been the method proposed by \mycite{halko2011finding}.
+Simultaneously, this is the method employed in \gls{scikit}.
+\bigskip
+
+
+We will now go through the idea of the random \gls{svd} step-by-step.
+To begin with, we consider a matrix $X \in \mathbb{R}^{n \times m}$.
+Our goal now is to multiply this by a random matrix $P \in \mathbb{R}^{m \times r}$.\footnote{%
+$P$ often consists of values lieing within a standard normal distribution due to its favourable mathematical properties \cite{brunton2019data}. %
+However, other --- less computationally expensive --- random matrices are frequently used.%
+}
+The number of column in $P$, $r$ represent the number of \acrlongpl{pc} we want to compute.
+After this, we will obtain a new matrix $Z \in \mathbb{R}^{n \times r}$:
+
+\vspace{-4mm}
+\begin{equation}
+	\label{formula:rSVDstepONE}
+	Z = X P
+\end{equation}
+
+Now it is time to compute the low-rank $QR$ decomposition of $Z$.
+$Q \in \mathbb{R}^{n \times r}$, $R \in \mathbb{R}^{r \times r}$. 
+This will result in $Z$ being an orthonormal basis for $X$:
+
+\vspace{-4mm}
+\begin{equation}
+	\label{formula:rSVDstepTWO}
+	Z = Q R
+\end{equation}
+
+Thanks to the low-rank basis $Q$, we can now project $X$ into a reduced space which will result in $Y \in \mathbb{R}^{r \times m}$
+
+\vspace{-4mm}
+\begin{equation}
+	\label{formula:rSVDstepTHREE}
+	Y = Q^T X
+\end{equation}
+
+It now follows that $X \approx QY$ \cite{brunton2019data} and it is now possible to compute the \gls{svd} on Y:
+
+\vspace{-4mm}
+\begin{equation}
+	\label{formula:rSVDstepFOUR}
+	Y = U_Y \ \Sigma \ V^T
+\end{equation}
+
+Because Q is orthonormal and approximates the columns of $X$, the matrices singular values $\Sigma$ and the right-singular vectors $V$ are the same for $Y$ and $X$ \cite{brunton2019data}.
+
+\clearpage
+
+
+Finally, thanks to aforementioned properties, it is now possible to recontsruct the high-dimensional left singular vectors $U$ using $U_Y$ and $Q$:
+
+\vspace{-4mm}
+\begin{equation}
+	\label{formula:rSVDstepFIVE}
+	U = Q U_Y
+\end{equation}
+\smallskip
+
+
+Now that we are familiar with how to approximate matrix decompositions with randomness, let us consider two methods on how to control and potentially improve the prediction results.
+We will now introduce the concepts of oversampling as well as power iterations.
+
+\paragraph{Oversampling}
+
+Oversampling is based on the idea that most matrices (such as $X$) do not have an exact low-rank structure.
+This being said, we are unlikely to guess it right.
+Therefore, when computing the matrix $P \in \mathbb{R}^{m \times r}$, we will simply add a certain number of additional columns.
+This number can be in a range as low as 5 to 10 and significantly improve results \cite{martinsson2016randomized}.
+The resulting matrix $P$ then could resemble $P \in \mathbb{R}^{m \times r+10}$.
+\gls{scikit} implements the parameter \texttt{n\_oversamples} for this purpose and sets the default value to 10.
+
+
+
+\paragraph{Power Iterations}
+
+The idea is to preprocess a data matrix $X$ and to take it to a parametrised power $q$.
+This results in:
+
+\vspace{-4mm}
+\begin{equation}
+	\label{formula:powerIterations}
+	X^{(q)} = (XX^T)^q X
+\end{equation}
+
+Using power iterations, we lenghten the distance between the significant ranks and the redundant information.
+Power iterations are an effective way to improve performance \cite{halko2011finding}.
+However, they come with the drawback of being particularly expensive to compute.
+\gls{scikit} implements the parameter \texttt{n\_iter} which defaults to 4\footnote{%
+unless the number of \glspl{pc} to compute is small, then it will default to 7%
+}.
+\bigskip
+\bigskip
+
+
+The randomised \gls{svd} allows for a computational complexity of $\bigo{d^3}$ \cite{HandsOnMLCh8}.
+This approach to matrix decomposition paves the way for petascale data analysis.
+The gain in efficiency is not solely owed to the nature of computing based on random lower dimesional matrices but also additionally allows efficient processing in multi-processor architectures \cite{halko2011finding}.
+
+
+% \item \cite{halko2011finding} scikit implementation
+% \item \cite{martinsson2011randomized} scikit implementation
+% \item \cite{brunton2019data} either capture a pre determined amount of the variance or identify transition points of singular values that give represent important patterns to noise
+% \item Increasingly important due to ever growing data set \cite{brunton2019data} (1.1)
+% \item According to this \cite{HandsOnMLCh8}
+% $$\bigo{d^3}$$
+% \item Also mentioned by Brunton: \cite{sarlos2006improved}
+
+\clearpage
