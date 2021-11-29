@@ -16,31 +16,56 @@ In this scenario, the matrices which represent a high-dimensional dataset are ca
 
 \subsubsection{Eigenvalues and eigenvectors}
 
-Linear algebra knowledge is required for this paper.
-This would have to be a book in its own to recapitulate the entirety of the matter.
-The most important aspects are: \cite{Strang2005tn} (p.263)
+The theories behind eigenvalues and eigenvectors are utilised extensively in dimensionality reduction.
+Due to this, we will quickly recall the key ideas behind the eigenvalue equation $A \overrightarrow{x} = \lambda \overrightarrow{x}$:
+
 
 \begin{itemize}
-	\item Only square matrices have eigenvectors and eigenvalues
-	\item We will make heavy use of transposing matrices
-	\item Identity matrix, Properties of diagonal matrices, General formula
+	\item Eigenvalues and eigenvectors only apply to squared matrices.
+	\item When searching for an eigenvalue $\lambda$, we aim to subtract $\lambda$ along the main diagonal of a matrix $A$ such that $A - \lambda I$ is \gls{singular} ($I$ being the identity matrix) \cite{Strang2005tn}.
+	\item The entire factorisation how to conclude to $A - \lambda I$ looks as following:
 	\begin{align}
-		\label{formula:one}
-		A \cdot x &= \lambda \cdot x 
+		\label{formula:eigenONE}
+		A \overrightarrow{x} &= \lambda \overrightarrow{x} 
 		\\
 		%
-		\label{formula:two}
-		A \cdot x &= \lambda \cdot x \cdot I
+		\label{formula:eigenTWO}
+		A \overrightarrow{x} &= (\lambda I) \overrightarrow{x}
 		\\
 		%
-		\label{formula:three}
-		(A - \lambda \cdot I)\cdot x &= 0
+		\label{formula:eigenTHREE}
+		A \overrightarrow{x} - (\lambda I) \overrightarrow{x} &= 0
+		\\
+		%
+		\label{formula:eigenFOUR}
+		(A - \lambda  I) \overrightarrow{x} &= 0
 		%
 	\end{align}
+	\item \reff{eigenTWO} translates the scalar-vector multiplication into a matrix-vector multiplication
+	\item $\overrightarrow{x} = \overrightarrow{0}$ is not expressive and therefore not considered
 \end{itemize}
 
-\reff{one}
+% \begin{itemize}
+% 	\item Only square matrices have eigenvectors and eigenvalues
+% 	\item We will make heavy use of transposing matrices
+% 	\item Identity matrix, Properties of diagonal matrices, General formula
+% 	\begin{align}
+% 		\label{formula:one}
+% 		A \cdot x &= \lambda \cdot x 
+% 		\\
+% 		%
+% 		\label{formula:two}
+% 		A \cdot x &= \lambda \cdot x \cdot I
+% 		\\
+% 		%
+% 		\label{formula:three}
+% 		(A - \lambda \cdot I)\cdot x &= 0
+% 		%
+% 	\end{align}
+% \end{itemize}
 
-\reff{two}
+% \reff{one}
 
-\reff{three}
+% \reff{two}
+
+% \reff{three}
