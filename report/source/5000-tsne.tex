@@ -1,41 +1,62 @@
-Manifold learning... showcase how this would solve the swiss roll
+After having explored linear techniques in fair detail, we will now take a glance at non-linear dimensionality reduction techniques and get an idea of their applications.
 
-\subsection{Manifolds} 
-
-This concept is significantly more difficult to get a hold of.
-Significant breakthroughs \cite{ma2012manifold} in this field were accomplished in the year 2000 in the significant and commonly cited paper \emph{A global geometric framework for nonlinear dimensionality reduction}. \cite{tenenbaum2000global}
-To understand the basic idea, we will demonstrate its behaviour to get an idea of the problem using the popular swiss roll data set pictured in figure \ref{fig:swissrollfull}.
-
-
-\noindent
-\begin{minipage}[c]{0.4\linewidth}
-%
-\vspace*{6mm}
-\begin{center}
-	\includegraphics[width=0.9\textwidth]{external_content/graphs/swiss_roll.png}
-	\captionsetup{justification=centering,type=htypei}
-	\captionof{figure}{Swiss Roll generated from scikit-learn \cite{scikit-learn}}
+\begin{wrapfigure}[13]{r}{0.5\textwidth}
+	\centering
+	\includegraphics[width=0.4\textwidth]{external_content/graphs/swiss_roll.png}
+	\captionsetup{justification=centering}
+	\captionof{figure}{Swiss Roll generated from\\ \gls{scikit} \cite{scikit-learn}}
 	\label{fig:swissrollfull}
-\end{center}
-%
-\end{minipage}\hfill%
-\begin{minipage}[c]{0.55\linewidth}
-Before demystifying this problem, we will then dive into various methods how to bend and twist high-dimensional data into lower-dimensional spaces.
+\end{wrapfigure}
 
-Our goal is to avoid confusing projections such as shown in figure \ref{fig:swissrollprojection}:
+In this demonstration, we will take a look at isomap embedding (often refered as isomap).
+First, we will get familiar with the problem domain and then establish a rudimentary theoretical foundation.
+Following this, since isomap is primarily used for visualisation \cite{HandsOnMLCh8}, its application is best explained from visual examples.
+For this, we will utilise the popular toy example of a swiss roll data set as depicted in adjoining figure \ref{fig:swissrollfull}.
 
-\begin{center}
-	\includegraphics[width=0.8\textwidth]{external_content/graphs/swiss_roll-projection.png}
-	\captionsetup{justification=centering,type=htypei}
+As we can imagine when looking at the swiss roll, a projection of the data or the reduction to a \gls{singular} plane would merely yield insignificant results such as observed in figure \ref{fig:swissrollprojection}.
+
+\begin{wrapfigure}[7]{l}{0.5\textwidth}
+	\centering
+	\includegraphics[width=0.38\textwidth]{external_content/graphs/swiss_roll-projection.png}
+	\captionsetup{justification=centering}
 	\captionof{figure}{Representation in 2D\\ of a projected swiss role}
 	\label{fig:swissrollprojection}
-\end{center}
-\end{minipage}%
+\end{wrapfigure}
 
-\begin{itemize}
-	\item First mentioned by \cite{van2008visualizing}
-\end{itemize}
+\vspace{-2mm}
+\noindent When faced with this kind of problem, manifold learning should be taken into consideration.
+It is an approach to non-linear dimensionality reduction and based on the idea that dimensionality of many data sets is only artificialy high.
+Manifold learning can be thought of as an attempt to generalise existing linear frameworks to be sensitive to non-linear structures \cite{scikit-learn}.
+The isomap embedding algorithm is one of the earliest approaches to manifold learning and has been proposed by \mycite{tenenbaum2000global}.
 
-\clearpage
+\begin{wrapfigure}[7]{r}{0.5\textwidth}
+	\centering
+	\includegraphics[width=0.45\textwidth]{external_content/graphs/swiss_roll-manifold.png}
+	\captionsetup{justification=centering}
+	\captionof{figure}{Unrolled swiss roll\\with isomap embedding}
+	\label{fig:swissrollmanifold}
+\end{wrapfigure}
 
-More about t-SNE...
+\noindent
+The result and its benefits and be observed in figure \ref{fig:swissrollmanifold}.
+Quickly summed up, isomap works in three stages \cite{scikit-learn}:
+
+\begin{enumerate}
+	\vspace{-2mm}
+	\item Nearest neighbor search
+	\vspace{-2mm}
+	\item Shortest-path graph search
+	\vspace{-2mm}
+	\item Partial eigenvalue decomposition
+\end{enumerate}
+
+
+% Significant breakthroughs \cite{ma2012manifold} in this field were accomplished in the year 2000 in the significant and commonly cited paper \emph{A global geometric framework for nonlinear dimensionality reduction}. \cite{tenenbaum2000global}
+% To understand the basic idea, we will demonstrate its behaviour to get an idea of the problem using the popular swiss roll data set pictured in figure \ref{fig:swissrollfull}.
+
+
+% \begin{itemize}
+% 	\item First mentioned by \cite{van2008visualizing}
+% \end{itemize}
+
+% \clearpage
