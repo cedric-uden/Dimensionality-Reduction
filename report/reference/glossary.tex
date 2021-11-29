@@ -3,6 +3,12 @@
 % \glspl{ } : This command is similar to \gls{ }. The only difference is that it will convert the term into its plural form.
 % \Glspl{ } : This command is similar to \Gls{ } command, with the difference that it will convert the term in its plural also.
 
+% \newglossaryentry{}
+% {
+%     name=,
+%     description={}
+% }
+
 \newglossaryentry{scikit}
 {
     name=scikit-learn,
@@ -27,16 +33,24 @@
     description={The low-dimensional manifold in which the high-dimensional data can be reduced without losing much information \cite{GeometricStructureWangCh1}}
 }
 
-\newglossaryentry{manifold}
+\newglossaryentry{qr}
 {
-    name=manifold,
-    description={}
+    name=$QR$ decomposition,
+    description={$QR$ factorisation method to produce a low-rank approximation. Allows to express an input matrix $A$ as the product of an orthogonal matrix $Q$ and a right-triangular factor $R$ such that $A = QR$ \cite{duersch2017randomized}}
 }
 
-\newglossaryentry{spectrum}
+\newglossaryentry{onb}
 {
-    name=spectrum,
-    description={}
+    name=orthonormal basis,
+    description={all basis vectors are orthogonal to each other and the length of each basis vector is 1 \cite{deisenroth2020mathematics}}
 }
 
-
+\newglossaryentry{lineintegral}
+{
+    name=line integral,
+    description={Instead of integrating over an interval $[a,b]$, we integrate over a curve $C$.
+    \emph{Curve integral} would be a more intuitive terminology. Generally, the line integral could be rewritten as following:\medskip
+    \\
+    $\int_C f(x,y) ds = \int_a^b f(x(t), y(t)) \sqrt{(\frac{dx}{dt})^2 + (\frac{dy}{dt})^2} dt$
+    \quad \cite{stewart2016calculus}}
+}

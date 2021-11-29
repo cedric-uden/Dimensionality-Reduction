@@ -252,7 +252,7 @@ But when our goal is efficient computation, the answer is quite more complicated
 
 
 For this, \citeauthor{minka2000automatic} has proposed an estimation which is alleged to be efficient yet precise \cite{minka2000automatic}.
-To compute this approximation, we are starting from a Bayesian model assumption which states that the probability of the data $D$, given a model $M$, is found by finding the line integral over the parameter $\theta$:
+To compute this approximation, we are starting from a Bayesian model assumption which states that the probability of the data $D$, given a model $M$, is found by finding the \gls{lineintegral} over the parameter $\theta$:
 
 \begin{equation}
 	\label{formula:minkaMLE}
@@ -392,9 +392,9 @@ After this, we will obtain a new matrix $Z \in \mathbb{R}^{n \times r}$:
 	Z = X P
 \end{equation}
 
-Now it is time to compute the low-rank $QR$ decomposition of $Z$.
+Now it is time to compute the low-rank \gls{qr} of $Z$.
 $Q \in \mathbb{R}^{n \times r}$, $R \in \mathbb{R}^{r \times r}$. 
-This will result in $Z$ being an orthonormal basis for $X$:
+This will result in $Z$ being an \gls{onb} for $X$:
 
 \vspace{-4mm}
 \begin{equation}
