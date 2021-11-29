@@ -1,3 +1,5 @@
+Following the idea from Hotelling \cite{deisenroth2020mathematics, hotelling1933analysis}.
+
 \subsubsection{Projection}
 
 
@@ -52,7 +54,7 @@ Therefore, we will begin by looking at the definitions of the covariance and cor
 {\setstretch{3}
 \begin{align}
 	\label{formula:covariance}
-	Cov(X,Y) &= \frac{1}{n} \cdot \displaystyle\sum_{i=0}^{n} (x_i - \overline{x})\cdot(y_i - \overline{y})\bigskip
+	Cov(X,Y) &= \frac{1}{n} \cdot \displaystyle\sum_{i=0}^{n} (x_i - \overline{x})(y_i - \overline{y})\bigskip
 	\\
 	\label{formula:correlation}
 	Corr(X,Y) &= \frac{1}{n} \cdot \displaystyle\sum_{i=0}^{n} \frac{(x_i - \overline{x})}{\sigma_X}\cdot\frac{(y_i - \overline{y})}{\sigma_Y}
@@ -93,32 +95,120 @@ A detailed example is given in section 3.3 of \citeauthor{brunton2019data}'s boo
 \subsubsection{Lagrange Multipliers}
 
 Now that we have established how to compute the covariance and the correlation between two variables, we will defog how to this comes together with our large data sets.
-To simplify the scope, we will solely consider the covariance at this point.
+For now, we will solely consider the covariance.
 
 To begin with, we have to calculate the covariance between each and every variable inside a data set.
 This will result in a covariance matrix.
 % PythonMachineLearningCh1 is in fact chapter 10
-The covariance matrix, which is a square matrix \cite{PythonMachineLearningCh1}, can then be
+The covariance matrix, which is a square matrix \cite{PythonMachineLearningCh1}, can then be transformed by a vector $\overrightarrow{v}$, expressed by $Var(X\overrightarrow{v})$\footnote{%
+	The variance is defined as $Var(X) = \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (x_i - \overline{x})^2$ \cite{deisenroth2020mathematics}
+	%
+}.
+To maximise the variance, we can then solve a constrained opimisation problem.
+This will then diminish into an eigenvalue equation.
+\bigskip
+
+
+We will now go through the steps, one-by-one, in order to comprehend how to find an algebraic solution to this problem:
+
+
+\vspace{-25mm}
+{\setstretch{2.75}
+\begin{align}
+	\label{formula:maxVarI}
+	Var(X\overrightarrow{v}) &= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (\overrightarrow{v}(x_i-\overline{x}))^2
+	\\
+	\label{formula:maxVarII}
+	&= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (\overrightarrow{v}(x_i-\overline{x})) (\overrightarrow{v}(x_i-\overline{x}))
+	\\
+	\label{formula:maxVarIII}
+	&= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (\overrightarrow{v}(x_i-\overline{x})) ((x_i-\overline{x})^T \ \overrightarrow{v}^T)
+	\\
+	\label{formula:maxVarIV}
+	&= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (\overrightarrow{v}(x_i-\overline{x})) ((y_i-\overline{y}) \ \overrightarrow{v}^T)
+	\\
+	\label{formula:maxVarV}
+	&= \overrightarrow{v} \Bigg(\frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} ((x_i-\overline{x})) ((y_i-\overline{y}))\Bigg) \overrightarrow{v}^T
+	\\
+	\label{formula:maxVarVI}
+	&= \overrightarrow{v} \enskip Cov(X,Y) \enskip \overrightarrow{v}^T
+\end{align}
+}
+
+\vspace{-16mm}
 
 \begin{itemize}
-	\item Mentioned by \cite{jolliffe2016principal} in Section 2 (a)
-	\item more details in introduction chapter in \cite{Jolliffe2002book}
+	\item In step \reff{maxVarIII} we used the fact that the dot product of two vectors is symmetric with respect to its arguments so that $\overrightarrow{v}^T x = x^T\overrightarrow{v}$.
+	\item Step \reff{maxVarIV} is due to the transpose of a row-wise covariance matrix being equal to the column-wise covariance matrix.
+	\item Finally, before proceeding any further, we will define $S := Cov(X,Y)$.
 \end{itemize}
 
-\begin{align}
-	S \cdot a - \lambda \cdot a &= 0 \\
-	\Leftrightarrow S \cdot a &= \lambda \cdot a
-\end{align}
 
 \clearpage
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Eigendecomposition}
+Now we are able to define an optimisation problem from $\overrightarrow{v} S \overrightarrow{v}^T$.
+When trying to compute the problem, we notice that arbitrarily increasing the magnitude of vector $\overrightarrow{v}$ would result in proportionally increasing the results ad infinitum.
+Therefore, we need to restrict all solutions to a set size such as $\norm{v} = 1$ (note that $\norm{a}$ represents the Euclidean norm of $a$).\todo{check the order of the transpose}
+
+Now dealing with a constained optimisation problem, we can obtain the Lagrangian $\mathcal{L}(\overrightarrow{v}, \lambda)$ to solve the problem $\max_{\overrightarrow{v}} (\overrightarrow{v} S \overrightarrow{v}^T)$ \cite{deisenroth2020mathematics}:
+
+\begin{equation}
+	\label{formula:maxOptimisationI}
+	\mathcal{L}(\overrightarrow{v}, \lambda) = \overrightarrow{v}^T S \overrightarrow{v} + \lambda_1 (1 - \overrightarrow{v}^T\overrightarrow{v})
+\end{equation}
+\begin{equation}
+	\label{formula:maxOptimisationII}
+	\frac{\partial \mathcal{L}}{\partial \overrightarrow{v}} = 2 \overrightarrow{v}^T S - 2 \lambda_1 \overrightarrow{v}^T,
+	\quad \quad
+	\frac{\partial \mathcal{L}}{\partial \lambda_1} = 1 - \overrightarrow{v}^T \overrightarrow{v}
+\end{equation}
+
+\vspace{2mm}
 
 \begin{itemize}
-	\item Looks like a good wrapup: \cite{abdi2007eigen}
+	\item Step \reff{maxOptimisationI} is the definition of the Lagrangian problem, given that $\overrightarrow{v}^T\overrightarrow{v}=1$, the addition of the right handside does not affect the result.
+	\item Let us now take a look at step \reff{maxOptimisationII}, which looks a lot less intuitive. 
+	What happens here is the partial derivates of $\mathcal{L}$ with respect to $\overrightarrow{v}$ and $\lambda_1$.
+	By setting these partial derivates to zero, this step allows us to conclude this journey:
 \end{itemize}
+
+\vspace{-16mm}
+{\setstretch{1.5}
+\begin{align}
+	\label{formula:maxOptimisationIII}
+	2 \overrightarrow{v}^T S - 2 \lambda_1 \overrightarrow{v}^T = 0 &= 1 - \overrightarrow{v}^T \overrightarrow{v}
+	\\
+	\label{formula:maxOptimisationIV}
+	2 \overrightarrow{v}^T S - 2 \lambda_1 \overrightarrow{v}^T &= 0
+	\\
+	\label{formula:maxOptimisationV}
+	2 \overrightarrow{v}^T S &= 2 \lambda_1 \overrightarrow{v}^T
+	\\
+	\label{formula:maxOptimisationVI}
+	\overrightarrow{v}^T S &= \lambda_1 \overrightarrow{v}^T
+	\\
+	\label{formula:maxOptimisationVII}
+	S \overrightarrow{v} &= \lambda_1 \overrightarrow{v}
+\end{align}
+}
+
+\vspace{-10mm}
+
+\begin{itemize}
+	\item \reff{maxOptimisationIV} is due to $\overrightarrow{v}^T \overrightarrow{v} = 1$
+	\item \reff{maxOptimisationVII} is due to multiplying $\overrightarrow{v}$ twice to both extremities of the respective equation
+\end{itemize}
+	
+\noindent The final step \reff{maxOptimisationVII} leaves us with a traditional eigenvalue problem which can now be computed in order to obtain the best approximations.
+
+
+% \subsubsection{Eigendecomposition}
+
+% \begin{itemize}
+% 	\item Looks like a good wrapup: \cite{abdi2007eigen}
+% \end{itemize}
 
 \clearpage
 
