@@ -1,10 +1,63 @@
-\begin{itemize}
-	\item Talk about other approaches which are not variance nor SVD based
-	\item Compare use cases and runtime
-	\item Mention other PCA approaches
-	\item Mention spare matrices
-	\item Mention other linear approaches
-\end{itemize}
+In this section, we will now recapitulate the what we have learned about \acrlong{pca} approaches in \gls{scikit}.
+One thing to keep in mind, is that the aforementioned methods do not support sparse input \cite{scikit-learn}.
+To start off, we have summed up the approaches and their corresponding runtime complexity in table \ref{table:scikitOverview}:
+
+\begin{table}[h]
+	\centering
+	\resizebox{0.9\textwidth}{!}{
+		\begin{tabular}{l|c|l}
+			\textbf{Name} & \textbf{Complexity} & \textbf{Comment} \\
+			\hline
+			Full & $\bigo{n^2}$ & Potentially expensive in computational resources.\\
+			ARPACK & $\bigo{n^2}$ & Truncated \gls{svd}\\
+			Randomized & $\bigo{d^3}$ & Ideal for large\footnotemark data sets\\
+		\end{tabular}
+	}
+	\caption{Overview of \gls{scikit}'s \gls{pca} implementations}
+	\label{table:scikitOverview}
+\end{table}
+\footnotetext{
+The value is subjective as the suitability is dependent on available resources.
+\gls{scikit} adopts this method when choosing automatically when the input data is larger than $500 \times 500$.
+}
+\medskip
 
 
+
+In the next paragraphs, we will shortly go over additional modules that \gls{scikit} offers to deal with sparse data as well as non-linear problems.
+
+\paragraph{\href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.SparsePCA.html\#sklearn.decomposition.SparsePCA}{SparsePCA}}
+
+Deal with sparse components which can be controlled using L1 regularisation penalty.
+The implementation uses the Cholesky decomposition which is a special way to factorise symmetric, positive definite matrices \cite{deisenroth2020mathematics}.
+
+
+\paragraph{\href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html\#sklearn.decomposition.TruncatedSVD}{TruncatedSVD}}
+
+Contrary to the ARPACK implementation in the previously discovered \gls{pca} package, this version does not center the data in order to deal with sparse matrices efficiently.
+The efficiency is gained by utilising sparse matrices datatypes which store only the location of nonzero elements \cite{HandsOnMLCh1}.
+This approach is also known as \gls{lsa} \cite{scikit-learn}.
+
+
+\paragraph{\href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.IncrementalPCA.html\#sklearn.decomposition.IncrementalPCA}{IncrementalPCA}}
+
+Allows for partial computations which almost exactly match the results of \gls{pca}.
+The data is fetched sequentially in chunks from the data source into the memory \cite{scikit-learn}.
+
+
+\paragraph{\href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.KernelPCA.html\#sklearn.decomposition.KernelPCA}{KernelPCA}}
+
+The non-linear reduction technique based on \gls{pca}.
+The basic idea behind kernel methods is to project original features into higher-dimensional space using a mapping function.
+The data then becomes separable linearly \cite{PythonMachineLearningCh1}.
+Kernel \gls{pca} hen uses the identical LAPACK, ARPACK and randomised solvers as in the linear implementation.
+
+
+% \begin{itemize}
+% 	\item Talk about other approaches which are not variance nor SVD based
+% 	\item Compare use cases and runtime
+% 	\item Mention other PCA approaches
+% 	\item Mention spare matrices
+% 	\item Mention other linear approaches
+% \end{itemize}
 \clearpage
