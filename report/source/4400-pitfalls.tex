@@ -1,24 +1,54 @@
-\subsubsection{Missaligned Data}
+\subsubsection{Misaligned Data}
 
 
-\begin{center}
-    \begin{figure}[h]
-      \centering
-      \includegraphics[width=0.94\linewidth]{external_content/media/rotation/average_face-rotation.png}
-      \captionsetup{justification=centering}
-      % \caption{}
-      % \label{}
-    \end{figure}
-\end{center}
+\begin{wrapfigure}[14]{r}{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.9\linewidth]{external_content/media/rotation/average_face-rotation.png}
+    \captionsetup{justification=centering}
+    \caption{Misaligned eigenface}
+    \label{fig:misalignedEigenface}
+\end{wrapfigure}
+
+One major problem with \gls{pca} as well as the \gls{svd} is that the units of the data on all axes as well as its alignment significantly impacts the resulting approximation \cite{brunton2019data}.
+The demonstration of the eigenfaces solely showcased decent results because the faces have been meticulously centered and cropped manually prior to the evaluation.
+The impact can be observed in the adjoining figure \ref{fig:misalignedEigenface}.
+
+To demonstrate the issues, 190 of the 2282 faces have been rotated by 10\textdegree\ prior to the \gls{svd}.
+This shows that a mere 8\% is enough to obfuscate the analysis.
 
 
-\cite{brunton2019data} (section 1.7)
+% \cite{brunton2019data} (section 1.7)
 
-\begin{itemize}
-	\item Showcase Eigenfaces with rotation
-	\item only few images ruin the batch
-	\item the dataset was meticulously centered and optimized by hand for a proof of concept
-\end{itemize}
+% \item Showcase Eigenfaces with rotation
+% \item only few images ruin the batch
+% \item the dataset was meticulously centered and optimized by hand for a proof of concept
+
+
+\subsubsection{Different units}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{external_content/media/wrong_units/graph.png}
+    \captionsetup{justification=centering}
+    \caption{Unit mismatch}
+    \label{fig:unitMismatch}
+\end{figure}
+
+\noindent
+Now we want to showcase what happens when \gls{pca} is applied on a data set with unrelated units.
+This examination is based on a \href{https://www.kaggle.com/nehalbirla/vehicle-dataset-from-cardekho?select=Car+details+v3.csv}{vehicle data set} with which we tried to identify patterns in terms of final selling price.
+As we can see in figure \ref{fig:unitMismatch}, the graph hardly expresses any useful information.
+
+
+% Different units WITHIN THE MATRIX... \cite{Jolliffe2002book} (Section 2.3 page 22)
+
+% \item relevant for ALL the values
+% \item bigger numbers become dominant no matter what
+% \item example car data set. I thought I was being smart... NOPE
+
+
+
+
 
 \clearpage
 
@@ -47,32 +77,5 @@ First principal components might be too general and not \cite{brunton2019data} (
 	\item taken with various facial expressions and very different lighting settings
 \end{itemize}
 
-
-\clearpage
-
-
-
-
-
-\subsubsection{Different units}
-
-\begin{center}
-    \begin{figure}[h]
-      \centering
-      \includegraphics[width=0.94\linewidth]{external_content/media/wrong_units/graph.png}
-      \captionsetup{justification=centering}
-      % \caption{}
-      % \label{}
-    \end{figure}
-\end{center}
-
-
-Different units WITHIN THE MATRIX... \cite{Jolliffe2002book} (Section 2.3 page 22)
-
-\begin{itemize}
-	\item relevant for ALL the values
-	\item bigger numbers become dominant no matter what
-	\item example car data set. I thought I was being smart... NOPE
-\end{itemize}
 
 \clearpage
