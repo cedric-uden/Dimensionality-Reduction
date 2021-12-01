@@ -101,7 +101,7 @@ For now, we will solely consider the covariance.
 To begin with, we have to calculate the covariance between each and every variable inside a data set.
 This will result in a covariance matrix.
 % PythonMachineLearningCh1 is in fact chapter 10
-The covariance matrix, which is a square matrix \cite{PythonMachineLearningCh1}, can then be transformed by a vector $\overrightarrow{v}$, expressed by $Var(X\overrightarrow{v})$\footnote{%
+The covariance matrix, which is a square matrix \cite{PythonMachineLearningCh1}, can then be transformed by a vector $\overrightarrow{v}$, expressed by $Var(X\overrightarrow{v}^T)$\footnote{%
 	The variance is defined as $Var(X) = \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (x_i - \overline{x})^2$ \cite{deisenroth2020mathematics}
 	%
 }.
@@ -117,29 +117,29 @@ We will now go through the steps, one-by-one, in order to comprehend how to find
 {\setstretch{2.75}
 \begin{align}
 	\label{formula:maxVarI}
-	Var(X\overrightarrow{v}) &= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (\overrightarrow{v}(x_i-\overline{x}))^2
+	Var(X\overrightarrow{v}^T) &= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (\overrightarrow{v}^T(x_i-\overline{x}))^2
 	\\
 	\label{formula:maxVarII}
-	&= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (\overrightarrow{v}(x_i-\overline{x})) (\overrightarrow{v}(x_i-\overline{x}))
+	&= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (\overrightarrow{v}^T(x_i-\overline{x})) (\overrightarrow{v}^T(x_i-\overline{x}))
 	\\
 	\label{formula:maxVarIII}
-	&= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (\overrightarrow{v}(x_i-\overline{x})) ((x_i-\overline{x})^T \ \overrightarrow{v}^T)
+	&= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (\overrightarrow{v}^T(x_i-\overline{x})) ((x_i-\overline{x})^T \ \overrightarrow{v})
 	\\
 	\label{formula:maxVarIV}
-	&= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (\overrightarrow{v}(x_i-\overline{x})) ((y_i-\overline{y}) \ \overrightarrow{v}^T)
+	&= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (\overrightarrow{v}^T(x_i-\overline{x})) ((y_i-\overline{y}) \ \overrightarrow{v})
 	\\
 	\label{formula:maxVarV}
-	&= \overrightarrow{v} \Bigg(\frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} ((x_i-\overline{x})) ((y_i-\overline{y}))\Bigg) \overrightarrow{v}^T
+	&= \overrightarrow{v}^T \Bigg(\frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} ((x_i-\overline{x})) ((y_i-\overline{y}))\Bigg) \overrightarrow{v}
 	\\
 	\label{formula:maxVarVI}
-	&= \overrightarrow{v} \enskip Cov(X,Y) \enskip \overrightarrow{v}^T
+	&= \overrightarrow{v}^T \enskip Cov(X,Y) \enskip \overrightarrow{v}
 \end{align}
 }
 
 \vspace{-16mm}
 
 \begin{itemize}
-	\item In step \reff{maxVarIII} we used the fact that the dot product of two vectors is symmetric with respect to its arguments so that $\overrightarrow{v}^T x = x^T\overrightarrow{v}$.
+	\item In step \reff{maxVarIII} we used the fact that the dot product of two vectors is symmetric with respect to its arguments so that $\overrightarrow{v}^T x  = x^T\overrightarrow{v}$.
 	\item Step \reff{maxVarIV} is due to the transpose of a row-wise covariance matrix being equal to the column-wise covariance matrix.
 	\item Finally, before proceeding any further, we will define $S := Cov(X,Y)$.
 \end{itemize}
@@ -149,11 +149,11 @@ We will now go through the steps, one-by-one, in order to comprehend how to find
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Now we are able to define an optimisation problem from $\overrightarrow{v} S \overrightarrow{v}^T$.
+Now we are able to define an optimisation problem from $\overrightarrow{v}^T S \overrightarrow{v}$.
 When trying to compute the problem, we notice that arbitrarily increasing the magnitude of vector $\overrightarrow{v}$ would result in proportionally increasing the results ad infinitum.
-Therefore, we need to restrict all solutions to a set size such as $\norm{v} = 1$ (note that $\norm{a}$ represents the Euclidean norm of $a$).\todo{check the order of the transpose}
+Therefore, we need to restrict all solutions to a set size such as $\norm{v} = 1$ (note that $\norm{a}$ represents the Euclidean norm of $a$).
 
-Now dealing with a constained optimisation problem, we can obtain the Lagrangian $\mathcal{L}(\overrightarrow{v}, \lambda)$ to solve the problem $\max_{\overrightarrow{v}} (\overrightarrow{v} S \overrightarrow{v}^T)$ \cite{deisenroth2020mathematics}:
+Now dealing with a constained optimisation problem, we can obtain the Lagrangian $\mathcal{L}(\overrightarrow{v}, \lambda)$ to solve the problem $\max_{\overrightarrow{v}} (\overrightarrow{v}^T S \overrightarrow{v})$ \cite{deisenroth2020mathematics}:
 
 \begin{equation}
 	\label{formula:maxOptimisationI}
