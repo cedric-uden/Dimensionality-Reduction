@@ -9,7 +9,7 @@ To start off, we have summed up the approaches and their corresponding runtime c
 			\textbf{Name} & \textbf{Complexity} & \textbf{Comment} \\
 			\hline
 			Full & $\bigo{n^2}$ & Potentially expensive in computational resources.\\
-			ARPACK & $\bigo{n^2}$ & Truncated \gls{svd}\\
+			\acrshort{arpack} & $\bigo{n^2}$ & Truncated \gls{svd}\\
 			Randomized & $\bigo{d^3}$ & Ideal for large\footnotemark data sets\\
 		\end{tabular}
 	}
@@ -34,7 +34,7 @@ The implementation uses the Cholesky decomposition, which is a special way to fa
 
 \paragraph{\href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html\#sklearn.decomposition.TruncatedSVD}{TruncatedSVD}}
 
-Contrary to the ARPACK implementation in the previously discovered \gls{pca} package, this version does not centre the data  to deal with sparse matrices efficiently.
+Contrary to the \acrshort{arpack} implementation in the previously discovered \gls{pca} package, this version does not centre the data  to deal with sparse matrices efficiently.
 The efficiency is gained by utilising sparse matrices datatypes which store only the location of nonzero elements \cite{HandsOnMLCh1}.
 This approach is also known as \gls{lsa} \cite{scikit-learn}.
 
@@ -50,7 +50,7 @@ The data is fetched sequentially in chunks from the data source into the memory 
 The non-linear reduction technique based on \gls{pca}.
 The basic idea behind kernel methods is to project original features into higher-dimensional space using a mapping function.
 The data then becomes separable linearly \cite{PythonMachineLearningCh1}.
-Kernel \gls{pca} hen uses the identical LAPACK, ARPACK and randomised solvers as in the linear implementation.
+Kernel \gls{pca} hen uses the identical \acrshort{lapack}, \acrshort{arpack} and randomised solvers as in the linear implementation.
 
 
 % \begin{itemize}
