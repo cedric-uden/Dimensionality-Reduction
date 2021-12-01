@@ -57,25 +57,45 @@ As we can see in figure \ref{fig:unitMismatch}, the graph hardly expresses any u
 
 \subsubsection{Too broad singular values}
 
+For our last examination we will showcase the effects an adequate choice of \acrlong{pc} has on the resulting evaluation.
+We are now considering the Yale Face Database again and comparing two exemplary \glspl{pc} of two people.
+
 \begin{center}
     \begin{figure}[h]
       \centering
       \includegraphics[width=0.94\linewidth]{external_content/media/choice_of_pc/p3_12-pc1_2-centered.png}
       \captionsetup{justification=centering}
-      % \caption{}
-      % \label{}
+      \caption{First two principal components for person 3 and 12}
+      \label{fig:pcIandII}
     \end{figure}
 \end{center}
 
-First principal components might be too general and not \cite{brunton2019data} (section 1.6 - last figure)
+\vspace{-12mm}
+For the first evaluation in figure \ref{fig:pcIandII} we are considering the two major \glspl{pc} when naively picking the highest singular values.
+Each point represents one image from the respective person.
+As we can observe, the assertions made from the graph are negligible.
+This is due to the \glspl{pc} primarily picking up the biggest similarities in the pictures such as the lighting conditions.
 
-\begin{itemize}
-	\item Showcase Eigenfaces distribution of the images
-	\item 5 and 6 work great
-	\item others ruin all the information
-	\item all the vertices are one picture of a person
-	\item taken with various facial expressions and very different lighting settings
-\end{itemize}
+But this does not have to be the end, upon further inspection by trial and error, we can identify \gls{pc} 5 and 6.
+Said \gls{pc} propose a split of the graph seen in figure \ref{fig:pcVandVI}.
+The values are now noticably heterogenous and we can make certain observations from their shape.
 
+\begin{center}
+    \begin{figure}[h]
+      \centering
+      \includegraphics[width=0.94\linewidth]{external_content/media/choice_of_pc/p3_12-pc5_6-centered.png}
+      \captionsetup{justification=centering}
+      \caption{\gls{pc} 5 and 6 for person 3 and 12}
+      \label{fig:pcVandVI}
+    \end{figure}
+\end{center}
+
+% First principal components might be too general and not \cite{brunton2019data} (section 1.6 - last figure)
+
+% \item Showcase Eigenfaces distribution of the images
+% \item 5 and 6 work great
+% \item others ruin all the information
+% \item all the vertices are one picture of a person
+% \item taken with various facial expressions and very different lighting settings
 
 \clearpage
