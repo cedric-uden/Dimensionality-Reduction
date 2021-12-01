@@ -4,14 +4,14 @@ After having explored the origins and early adaptations of \gls{pca}, it is time
 For this, we will take a look at how \gls{pca} is implemented in \gls{scikit} and quickly observe that all variations rely on \gls{svd} internally.\bigskip
 
 
-In a sense, the \gls{svd} generalises the ideas behind the fast Fourier transform.
-For example used in media compression algorithms. 
+In a sense, the \gls{svd} generalises the ideas behind the fast Fourier transform, which for example is used in media compression algorithms. 
 Whereas the fast Fourier transform provides a generic approximation for a data set, the \gls{svd} can be seen as a data-driven technique.
 The \gls{svd} adapts itself to the data set as a whole.
+Another major different is that the decomposition of the \gls{svd} can be reversed by approximation.
 \bigskip
 
 
-Generally speaking, the \gls{svd} is a form of matrix decomposition in which the matrix is arranged into its most statistically descriptive factors.
+Generally speaking, the goal of \gls{svd} is to decompose a matrix into its components which are sorted by their most statistically descriptive factors.
 The primary advantage of the \gls{svd} is the efficiency and versatility of applications it can be used in.
 
 The efficiency is key for ever growing data sets that are available and collected in modern times.
