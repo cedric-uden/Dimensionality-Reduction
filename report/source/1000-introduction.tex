@@ -1,10 +1,35 @@
-\begin{itemize}
-	\item Like many other multivariate methods, it was not widely used until the rise of computers. 
-	It is now well entrenched in most statistical applications. \cite{Jolliffe2002book}
-	\item We will explore how to transform a large dimensional datasets into its \gls{intrinsicDimension} consisting of \glspl{latentVariable}
-	\item We will take a look at different algorithms, their benefits and fallacies as well as their implementation
-	\item Increase intepretability while minimizing information loss \cite{jolliffe2016principal}
-	\item Do not forget to mention that we are only considering real numbers and this is also possible in the complex number space with certain more caveats
-	\item Naturally occurring systems often exhibit dominant patterns
-	\item Can be used to de-noise data sets (\cite{brunton2019data} - 1.1)
-\end{itemize}
+\Gls{mva} has not widely been exploited until the rise of computers in modern times \cite{Jolliffe2002book}.
+This becomes apparent when contemplating its intensive calculations which reach further than our human imagination deems possible.
+As we will study in this paper, the theory of \gls{dr} in \gls{mva} is considerably older than its applications.
+Thanks to modern technologies and computational resources, \gls{dr} is now well entrenched in most statistical applications.
+Accompanying its progress, substancial revelations have emerged in recent years which we will elaborate in greater detail in this work.
+\bigskip
+
+
+The primary goal of \gls{dr} is to maximise the variance between \glspl{latentVariable} of a given data set.
+This allows us to transform a large dimensional data set into its \gls{intrinsicDimension}.
+Our goal along this journey is to minimise information loss while increasing interpretability \cite{jolliffe2016principal}.
+This is made possible by the condition that naturally occuring systems often exhibit dominant patterns.
+\Gls{dr} also has further secondary effects which comes with advantages that will be established alongside this work.
+\medskip
+
+In order to achieve this, we will begin by stating the circumstances surrounding the domain of \gls{dr}.
+Based on this insight, we will then discuss the origins and some solution approaches in \gls{pca}, one of the most popular techniques in \gls{dr}.
+We will take a look at different algorithms, their benefits and implementation.
+Afterwards, we will look at specific applications how it can be used and then examine common pitfalls to avoid.
+To close off, we will briefly look at an entirely different technique in order to be able to better narrow down which technique is beneficial in a given scenario.
+\bigskip
+
+
+Finally, it is worth noting that this work merely portrays a brief outline of the subject and can not precisely cover the vast research conducted during the past century.
+Additionally, we will simply consider the domain of the real numbers $\mathbb{R}$ during the course of this elaboration.
+
+
+% \item Like many other multivariate methods, it was not widely used until the rise of computers. 
+% It is now well entrenched in most statistical applications. \cite{Jolliffe2002book}
+% \item We will explore how to transform a large dimensional datasets into its \gls{intrinsicDimension}
+% \item We will take a look at different algorithms, their benefits and fallacies as well as their implementation
+% \item Increase intepretability while minimizing information loss \cite{jolliffe2016principal}
+% \item Do not forget to mention that we are only considering real numbers and this is also possible in the complex number space with certain more caveats
+% \item Naturally occurring systems often exhibit dominant patterns
+% \item Can be used to de-noise data sets (\cite{brunton2019data} - 1.1)
