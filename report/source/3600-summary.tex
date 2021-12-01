@@ -29,12 +29,12 @@ In the next paragraphs, we will shortly go over additional modules that \gls{sci
 \paragraph{\href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.SparsePCA.html\#sklearn.decomposition.SparsePCA}{SparsePCA}}
 
 Deal with sparse components which can be controlled using L1 regularisation penalty.
-The implementation uses the Cholesky decomposition which is a special way to factorise symmetric, positive definite matrices \cite{deisenroth2020mathematics}.
+The implementation uses the Cholesky decomposition, which is a special way to factorise symmetric, positive definite matrices \cite{deisenroth2020mathematics}.
 
 
 \paragraph{\href{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html\#sklearn.decomposition.TruncatedSVD}{TruncatedSVD}}
 
-Contrary to the ARPACK implementation in the previously discovered \gls{pca} package, this version does not center the data in order to deal with sparse matrices efficiently.
+Contrary to the ARPACK implementation in the previously discovered \gls{pca} package, this version does not centre the data  to deal with sparse matrices efficiently.
 The efficiency is gained by utilising sparse matrices datatypes which store only the location of nonzero elements \cite{HandsOnMLCh1}.
 This approach is also known as \gls{lsa} \cite{scikit-learn}.
 

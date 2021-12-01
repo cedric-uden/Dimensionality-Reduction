@@ -72,10 +72,10 @@ To get a detailed overview of the different solvers, we will start with the defa
 Following \gls{scikit}'s documentation, we know that \gls{scikit} implements the standard LAPACK solver via \texttt{scipy.linalg.svd}.
 \bigskip
 
-LAPACK is an acronym for Linear Algebra Package and is a library of Fortran 77 subroutines which solves most commonly occuring problems in linear algebra \cite{anderson1999lapack}.
+LAPACK is an acronym for Linear Algebra Package and is a library of Fortran 77 subroutines which solves most commonly occurring problems in linear algebra \cite{anderson1999lapack}.
 It is designed to be maximally efficient on the whole spectrum of modern computers, with a particular focus on high-performance computers.
 
-In order to understand the parameters and interfaces the data passes through, we will retrace the entire path from \gls{scikit} to LAPACK in their respective implementations.
+To understand the parameters and interfaces the data passes through, we will retrace the entire path from \gls{scikit} to LAPACK in their respective implementations.
 
 
 \begin{lstlisting}[
@@ -115,7 +115,7 @@ firstnumber=489,
 
 \noindent
 The \gls{scikit} version in consideration is \href{\scikitPCAvIxOxI{_pca}}{1.0.1}.
-Here we can see that the data is centered in a first step before being handed over to scipy in the last line of listing \ref{lst:sklearnTOscipy}.
+Here we can see that the data is centred in a first step before being handed over to scipy in the last line of listing \ref{lst:sklearnTOscipy}.
 Next up, we will look at where the data enters \texttt{scipy} (\href{\scipyvIxVIIxII{decomp_svd}}{version 1.7.2}).
 
 
@@ -198,7 +198,7 @@ To start of the procedure, the matrix is first checked by \texttt{scipy} to make
 Then, the adequate subroutine call to LAPACK is returned into the current scope based on the keyword \texttt{`lapack\_driver`}.
 
 Finally, the matrix is handed over to the LAPACK routine where it is being solved based on its selected driver.
-We will now look at what is hiding behind the intials \texttt{`gesXd`}.
+We will now look at what is hiding behind the initials \texttt{`gesXd`}.
 \bigskip
 
 Generally, LAPACK's names for routines are six digits long due to the character limitation imposed by standard Fortran 77.
@@ -216,17 +216,17 @@ firstnumber=345,
 prefix, dtype, prefer_fortran = find_best_blas_type(arrays, dtype)
 \end{lstlisting}
 
-After finding the best suited data type in \texttt{scipy}, the characters \texttt{ge} in LAPACK describe a general matrix (i.e. unsymmetric and potentially rectangular).
+After finding the best suited data type in \texttt{scipy}, the characters \texttt{ge} in LAPACK describe a general matrix (i.e., unsymmetric and potentially rectangular).
 Ultimately, the characters \texttt{sXd} describe two different routines to solve an \gls{svd}.
-\texttt{svd} refers to the so called \emph{simple driver}, the function is refered to as \texttt{xGESVD} in LAPACK.
-\texttt{sdd} refers to the \emph{divide and conquer driver} offered by LAPACK, refered to as \texttt{xGESDD}.
+\texttt{svd} refers to the so-called \emph{simple driver}, the function is referred to as \texttt{xGESVD} in LAPACK.
+\texttt{sdd} refers to the \emph{divide and conquer driver} offered by LAPACK, referred to as \texttt{xGESDD}.
 \medskip
 
-The \emph{divide and conquer driver} solves the same problem as the simple driver.
-Albeit, it is much faster than the simple driver but requires more computational resources.
+The \emph{divide and conquer driver} solve the same problem as the simple driver.
+Albeit it is much faster than the simple driver but requires more computational resources.
 This routine is chosen by default when calling \texttt{scipy.linalg.svd}, which is exactly what \gls{scikit} does in listing \ref{lst:scipyToLAPACK}.
 
-The full details on the algorithm is found in section 3.4.3 in \citetitle{anderson1999lapack} \cite{anderson1999lapack} and the implementation in Fortran is found in ``Part 2 - Specifications of Routines''.
+The full detail on the algorithm is found in section 3.4.3 in \citetitle{anderson1999lapack} \cite{anderson1999lapack} and the implementation in Fortran is found in ``Part 2 - Specifications of Routines''.
 \bigskip
 
 And indeed, the results are remarkable: \texttt{xGESVD}, has a complexity of $\bigo{n^3}$ \cite{wright2001large}.
@@ -246,7 +246,7 @@ This routine is still the default when calling an \gls{svd} in Matlab for exampl
 \subsubsection{Minka's Automatic Choice of Dimensionality for PCA} \label{sec:mle}
 
 One key issue in \acrlong{pca} is how to decide on which \glspl{pc} to keep.
-When our goal is to visualise data, the answer might be trivial: 2 or 3, since higher dimensionality is difficult to picture.
+When our goal is to visualise data, the answer might be trivial: 2 or 3 since higher dimensionality is difficult to picture.
 But when our goal is efficient computation, the answer is quite more complicated and is tensioned between significantly faster results versus more required computational power.
 \bigskip
 
@@ -272,7 +272,7 @@ This is opposing to other algorithms which perform well on a specific shape of d
 
 
 \bigskip
-The function \texttt{\_assess\_dimensions} in lines 30 -- 101 in the module \href{\scikitPCAvIxOxI{_pca}}{\texttt{\_pca} in version 1.0.1} in \gls{scikit} implements \citeauthor{minka2000automatic}'s proposed estamation.
+The function \texttt{\_assess\_dimensions} in lines 30 -- 101 in the module \href{\scikitPCAvIxOxI{_pca}}{\texttt{\_pca} in version 1.0.1} in \gls{scikit} implements \citeauthor{minka2000automatic}'s proposed estimation.
 
 
 % \item scikit-learn implemented this version \cite{minka2000automatic} to guess the output dimesionality. 
@@ -290,7 +290,8 @@ It is designed exclusively to solve large-scale eigenvalue problems \cite{lehouc
 \medskip
 
 
-We will now again trace the flow of data from \gls{scikit} through \texttt{scipy} into the package where it is being processed. This starts again the the \href{\scikitPCAvIxOxI{_pca}}{\texttt{\_pca}} module:
+We will now again trace the flow of data from \gls{scikit} through \texttt{scipy} into the package where it is being processed.
+This starts again the the \href{\scikitPCAvIxOxI{_pca}}{\texttt{\_pca}} module:
 
 \begin{lstlisting}[
 inputencoding={utf8}, 
@@ -308,7 +309,7 @@ if svd_solver == "arpack":
 \noindent
 The call to \texttt{\_init\_arpack\_v0} will sample random vectors from the uniform distribution of the data.
 The parameter \texttt{random\_state} will make sure that the random vectors are merely pseudorandom and provide a deterministic result.
-Now, we will take a  look at how the data is traversing \texttt{scipy} after being called in line 571 of listing \ref{lst:scikitTOscipy}.
+Now, we will look at how the data is traversing \texttt{scipy} after being called in line 571 of listing \ref{lst:scikitTOscipy}.
 \bigskip
 
 \renewcommand{\tikzscale}{0.65}
@@ -327,10 +328,10 @@ Now, we will take a  look at how the data is traversing \texttt{scipy} after bei
 Now, we will describe what each node in figure \ref{fig:scikitToARPACK} represents:
 \begin{itemize}
 	\item Starting in \texttt{scikit}, we arrive in the second node \texttt{svds}, which is the function being called in the \texttt{scipy} module \texttt{scipy.sparse.linalg.svds}.
-	\item \texttt{svds} then analyses the shape of the matrix in order to determine the most efficient sequence of multiplication (either $A^TA$ or $AA^T$) before passing it to the next function \texttt{eigsh}.
+	\item \texttt{svds} then analyses the shape of the matrix to determine the most efficient sequence of multiplication (either $A^TA$ or $AA^T$) before passing it to the next function \texttt{eigsh}.
 	\item \texttt{eigsh} then verifies the content of the matrix and chooses the adequate ARPACK driver:
 	\begin{itemize}
-		\item If the matrix is identified an Hermitian (complex) matrix, then the complex driver is used. As we are only focusing on real (symmetric) matrices, this step wont be considered any further.
+		\item If the matrix is identified a Hermitian (complex) matrix, then the complex driver is used. As we are only focusing on real (symmetric) matrices, this step will not be considered any further.
 		\item If the matrix is identified to be rectangular instead of squared, the function is handed to a LAPACK driver instead
 		\item If the matrix is indeed symmetric as expected, then the matrix is processed by the function \texttt{\_SymmetricArpackParams} (\texttt{\_SAP}) and then handed over to the \texttt{SAUPD} driver.
 	\end{itemize}
@@ -339,7 +340,7 @@ Now, we will describe what each node in figure \ref{fig:scikitToARPACK} represen
 The \texttt{SAUPD} driver in ARPACK then solves the eigenproblem as a variant of the Lanczos method.
 The Lanczos method is designed to compute approximations to a few eigenvalues and eigenvectors of a symmetric matrix \cite{lehoucq1998arpack}.
 
-\texttt{SAUPD} can then be finetuned with various parameters such as \texttt{WHICH} to computed the smallest or largest eigenvalues first, \texttt{NEV} to set the numbers of eigenvalues to be computed, \texttt{TOL} to set the tolerance of the precision for floating point numbers.
+\texttt{SAUPD} can then be finetuned with various parameters such as \texttt{WHICH} to compute the smallest or largest eigenvalues first, \texttt{NEV} to set the numbers of eigenvalues to be computed, \texttt{TOL} to set the tolerance of the precision for floating point numbers.
 \bigskip
 
 To sum up the ARPACK method, it is a procedure to approximate the decomposition of a matrix.
@@ -364,8 +365,8 @@ This makes it a lot more suited for large scale problems while simultaneously ex
 \subsubsection{Randomized SVD}
 
 
-As a last approach to establishing a \acrlong{svd} of a matrix, we will take a look at opportunities that are made possible by random sampling. 
-The primary driver to random methods are the increasingly vast measurements available across many different disciplines.
+As a last approach to establishing a \acrlong{svd} of a matrix, we will look at opportunities that are made possible by random sampling. 
+The primary driver to random methods is the increasingly vast measurements available across many different disciplines.
 
 Fortunately, the intrinsic rank of the data does not increase significantly if at all.
 Thanks to this awareness, randomised numerical methods provide an accurate matrix decomposition at a fraction of the cost of the previously introduced models \cite{brunton2019data}.
@@ -383,7 +384,7 @@ Our goal now is to multiply this by a random matrix $P \in \mathbb{R}^{m \times 
 $P$ often consists of values lieing within a standard normal distribution due to its favourable mathematical properties \cite{brunton2019data}. %
 However, other --- less computationally expensive --- random matrices are frequently used.%
 }
-The number of column in $P$, $r$ represent the number of \acrlongpl{pc} we want to compute.
+The number of columns in $P$, $r$ represent the number of \acrlongpl{pc} we want to compute.
 After this, we will obtain a new matrix $Z \in \mathbb{R}^{n \times r}$:
 
 \vspace{-4mm}
@@ -423,7 +424,7 @@ Because Q is orthonormal and approximates the columns of $X$, the matrices singu
 \clearpage
 
 
-Finally, thanks to aforementioned properties, it is now possible to recontsruct the high-dimensional left singular vectors $U$ using $U_Y$ and $Q$:
+Finally, thanks to aforementioned properties, it is now possible to reconstruct the high-dimensional left singular vectors $U$ using $U_Y$ and $Q$:
 
 \vspace{-4mm}
 \begin{equation}
@@ -439,7 +440,7 @@ We will now introduce the concepts of oversampling as well as power iterations.
 \paragraph{Oversampling}
 
 Oversampling is based on the idea that most matrices (such as $X$) do not have an exact low-rank structure.
-This being said, we are unlikely to guess it right.
+We are unlikely to guess it right.
 Therefore, when computing the matrix $P \in \mathbb{R}^{m \times r}$, we will simply add a certain number of additional columns.
 This number can be in a range as low as 5 to 10 and significantly improve results \cite{martinsson2016randomized}.
 The resulting matrix $P$ then could resemble $P \in \mathbb{R}^{m \times r+10}$.
@@ -449,7 +450,7 @@ The resulting matrix $P$ then could resemble $P \in \mathbb{R}^{m \times r+10}$.
 
 \paragraph{Power Iterations}
 
-The idea is to preprocess a data matrix $X$ and to take it to a parametrised power $q$.
+The idea is to pre-process a data matrix $X$ and to take it to a parametrised power $q$.
 This results in:
 
 \vspace{-4mm}
@@ -458,7 +459,7 @@ This results in:
 	X^{(q)} = (XX^T)^q X
 \end{equation}
 
-Using power iterations, we lenghten the distance between the significant ranks and the redundant information.
+Using power iterations, we lengthen the distance between the significant ranks and the redundant information.
 Power iterations are an effective way to improve performance \cite{halko2011finding}.
 However, they come with the drawback of being particularly expensive to compute.
 \gls{scikit} implements the parameter \texttt{n\_iter} which defaults to 4\footnote{%
@@ -470,7 +471,7 @@ unless the number of \glspl{pc} to compute is small, then it will default to 7%
 
 The randomised \gls{svd} allows for a computational complexity of $\bigo{d^3}$ \cite{HandsOnMLCh8}.
 This approach to matrix decomposition paves the way for petascale data analysis.
-The gain in efficiency is not solely owed to the nature of computing based on random lower dimesional matrices but also additionally allows efficient processing in multi-processor architectures \cite{halko2011finding}.
+The gain in efficiency is not solely owed to the nature of computing based on random lower dimensional matrices but also additionally allows efficient processing in multi-processor architectures \cite{halko2011finding}.
 
 
 % \item \cite{halko2011finding} scikit implementation
