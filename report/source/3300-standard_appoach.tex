@@ -26,8 +26,7 @@ As we can observe, when we pick the right \gls{hyperplane}, such as the x axis s
 
 
 As one might be inclined to think the idea strongly resembles to a regression problem. 
-\citeauthor{tarpey1999self} elaborates this idea thoroughly in his paper \citetitle{tarpey1999self} \cite{tarpey1999self}.
-\citeauthor{tarpey1999self} ends his work by proposing a test for the determined ``self-consistency'' of a principal component.
+\citeauthor{tarpey1999self} elaborates this idea thoroughly in his paper \citetitle{tarpey1999self} \cite{tarpey1999self} and ends his work by proposing a test for the determined ``self-consistency'' of a principal component.
 
 
 % \item \cite{tarpey1999self} has good approaches to get behind the idea of projection
@@ -55,10 +54,10 @@ Therefore, we will begin by looking at the definitions of the covariance and cor
 {\setstretch{3}
 \begin{align}
 	\label{formula:covariance}
-	Cov(X,Y) &= \frac{1}{n} \cdot \displaystyle\sum_{i=0}^{n} (x_i - \overline{x})(y_i - \overline{y})\bigskip
+	Cov(X,Y) &= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (x_i - \overline{x})(y_i - \overline{y})\bigskip
 	\\
 	\label{formula:correlation}
-	Corr(X,Y) &= \frac{1}{n} \cdot \displaystyle\sum_{i=0}^{n} \frac{(x_i - \overline{x})}{\sigma_X}\cdot\frac{(y_i - \overline{y})}{\sigma_Y}
+	Corr(X,Y) &= \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} \frac{(x_i - \overline{x})}{\sigma_X}\cdot\frac{(y_i - \overline{y})}{\sigma_Y}
 \end{align}
 }
 
@@ -82,7 +81,7 @@ Understanding the proportions is also a concept that must be remembered by the p
 
 However, when the variance between variables is enormous in comparison to other variables in a data set, the covariance can render the assertions from the first components useless as the series with the enormous variance will dominate the calculations.
 
-A detailed example is given in section 3.3 of \citeauthor{brunton2019data}'s book \citetitle{brunton2019data} \cite{brunton2019data}.
+A detailed demonstration is given in section 3.3 of \citeauthor{brunton2019data}'s book \citetitle{brunton2019data} \cite{brunton2019data}.
 
 % \item Correlation Matrix is the normalized version of the Covariance Matrix (sort of)
 % \item Mentioned by \cite{jolliffe2016principal} in Section 2 (a)
@@ -105,12 +104,12 @@ The covariance matrix, which is a square matrix \cite{PythonMachineLearningCh1},
 	The variance is defined as $Var(X) = \frac{1}{n} \cdot \displaystyle\sum_{i=1}^{n} (x_i - \overline{x})^2$ \cite{deisenroth2020mathematics}
 	%
 }.
-To maximise the variance, we can then solve a constrained optimisation problem.
-This will then diminish into an eigenvalue equation.
+To maximise the variance, we can then establish a constrained optimisation problem.
+This will then result in an eigenvalue equation.
 \bigskip
 
 
-We will now go through the steps, one-by-one, to comprehend how to find an algebraic solution to this problem:
+We will now go through the steps, one-by-one, to comprehend how to establish the algebraic solution to this problem:
 
 
 \vspace{-25mm}
@@ -139,7 +138,7 @@ We will now go through the steps, one-by-one, to comprehend how to find an algeb
 \vspace{-16mm}
 
 \begin{itemize}
-	\item In step \reff{maxVarIII} we used the fact that the dot product of two vectors is symmetric with respect to its arguments so that $\overrightarrow{v}^T x  = x^T\overrightarrow{v}$.
+	\item In step \reff{maxVarIII} we used the fact that the dot product of two vectors is symmetric with respect to its arguments so that $\overrightarrow{v}^T x  = x^T\overrightarrow{v}$ \cite{deisenroth2020mathematics}.
 	\item Step \reff{maxVarIV} is due to the transpose of a row-wise covariance matrix being equal to the column-wise covariance matrix.
 	\item Finally, before proceeding any further, we will define $S := Cov(X,Y)$.
 \end{itemize}
@@ -149,8 +148,7 @@ We will now go through the steps, one-by-one, to comprehend how to find an algeb
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Now we are able to define an optimisation problem from $\overrightarrow{v}^T S \overrightarrow{v}$.
-When trying to compute the problem, we notice that arbitrarily increasing the magnitude of vector $\overrightarrow{v}$ would result in proportionally increasing the results ad infinitum.
+Now that we are able to establish the optimisation problem from $\overrightarrow{v}^T S \overrightarrow{v}$, when trying to compute the problem, we notice that arbitrarily increasing the magnitude of vector $\overrightarrow{v}$ would result in proportionally increasing the results ad infinitum.
 Therefore, we need to restrict all solutions to a set size such as $\norm{v} = 1$ (note that $\norm{a}$ represents the Euclidean norm of $a$).
 
 Now dealing with a constrained optimisation problem, we can obtain the Lagrangian $\mathcal{L}(\overrightarrow{v}, \lambda)$ to solve the problem $\max_{\overrightarrow{v}} (\overrightarrow{v}^T S \overrightarrow{v})$ \cite{deisenroth2020mathematics}:
@@ -171,8 +169,8 @@ Now dealing with a constrained optimisation problem, we can obtain the Lagrangia
 \begin{itemize}
 	\item Step \reff{maxOptimisationI} is the definition of the Lagrangian problem, given that $\overrightarrow{v}^T\overrightarrow{v}=1$, the addition of the right-hand side does not affect the result.
 	\item Let us now look at step \reff{maxOptimisationII}, which looks a lot less intuitive. 
-	What happens here is the partial derivates of $\mathcal{L}$ with respect to $\overrightarrow{v}$ and $\lambda_1$.
-	By setting these partial derivates to zero, this step allows us to conclude this journey:
+	What happens here is the calculation the partial derivates of $\mathcal{L}$ with respect to $\overrightarrow{v}$ and $\lambda_1$.
+	By setting these partial derivates to zero, this step allows us to conclude:
 \end{itemize}
 
 \vspace{-16mm}

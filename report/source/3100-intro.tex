@@ -3,11 +3,11 @@ We will look at the linear classifier that is offered using \gls{pca} and get a 
 \bigskip
 
 
-\Gls{pca} is one of the oldest and simultaneously most widespread methods used to reduce the dimensionality of a large data set.
-We will first look at the vast number of important initial ideas and milestones during its development.
+\Gls{pca} is one of the oldest and simultaneously most widespread methods used to reduce the dimensionality of a data set.
+We will first look at the vast number of important inventions and milestones during its development.
 
-After getting a brief outline of the subject, we will have a look at some of the models used to determine \glspl{pc}: first a more traditional approach, combining various theorems in linear algebra. 
-Finally, we will examine the \gls{svd} as a tool to decompose a matrix.
+After getting a brief outline of the subject, we will have a look at some of the models used to determine \glspl{pc}: first a more traditional approach, combining various mathematical procedures. 
+Finally, we will examine the \gls{svd} as a tool to decompose a matrix into meaningful components.
 
 \Gls{svd} is the more recent approach which is only feasible thanks to the modern computation power available in recent years.
 This approach will be accompanied by exploring the implementation of \gls{pca} in \gls{scikit}.
@@ -18,14 +18,14 @@ This approach will be accompanied by exploring the implementation of \gls{pca} i
 An important contribution to its popularity is surely the wide range of applications \gls{pca} can be applied to.
 The areas are nearly endless and continuously growing --- agriculture, economics, genetics, oceanography, psychology --- just to name a few.
 The \emph{Web of Science} identified over 2000 articles published in 1999 and 2000 alone that related to \gls{pca} \cite{Jolliffe2002book}.
-And with modern computational resources being an important driver in its development, the collection is expanding to this day.
+And with modern computational resources being an important driver in its development, the collection is still expanding to this day.
 \bigskip
 
 
 The key idea behind \gls{pca} is to increase interpretability while at the same time minimising information loss. 
 This is possible thanks to creating new uncorrelated variables that sequentially maximise their variance.
 The methods mentioned above, the traditional approach and the one using \gls{svd}, differ significantly. 
-These and many more are tailored to the various data types and structures of data sets in each problem \cite{jolliffe2016principal}.
+These approaches and many more are tailored to the various data types and structures of data sets in each problem \cite{jolliffe2016principal}.
 
 % \item Primarily used for feature extraction \cite{PythonMachineLearningCh5}
 % \item Used in an abundance of fields... \cite{Jolliffe2002book} (Section 1.2 page 9)

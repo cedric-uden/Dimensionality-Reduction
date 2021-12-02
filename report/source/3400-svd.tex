@@ -1,35 +1,36 @@
 \subsubsection{Introduction}
 
 After having explored the origins and early adaptations of \gls{pca}, it is time to introduce the approach used to compute \gls{pca} nowadays: using the \acrlong{svd}.
-For this, we will look at how \gls{pca} is implemented in \gls{scikit} and quickly observe that all variations rely on \gls{svd} internally.\bigskip
+For this, we will look at how \gls{pca} is implemented in \gls{scikit} and quickly observe that all variations rely on the \gls{svd} internally.\bigskip
 
 
 In a sense, the \gls{svd} generalises the ideas behind the fast Fourier transform, which for example is used in media compression algorithms. 
-Whereas the fast Fourier transform provides a generic approximation for a data set, the \gls{svd} can be seen as a data-driven technique.
+Whereas the fast Fourier transform provides a generic approximation for a data set, the \gls{svd} can be seen as a data-driven technique \cite{brunton2019data}.
 The \gls{svd} adapts itself to the data set as a whole.
 Another major different is that the decomposition of the \gls{svd} can be reversed by approximation.
 \bigskip
 
 
-The goal of \gls{svd} is to decompose a matrix into its components which are sorted by their most statistically descriptive factors.
+The goal of the \gls{svd} is to decompose a matrix into its components which are sorted by their most statistically descriptive factors.
 The primary advantage of the \gls{svd} is the efficiency and versatility of applications it can be used in.
 
 The efficiency is key for ever growing data sets that are available and collected in modern times.
-The versatility is a neat by-product and conveyor of its popularity, because the different flavours \gls{svd} comes in and provides vast combinations of benefits and drawbacks.
-These characteristics can furthermore be tailored to a specific problem to either optimise it or to make it feasible to begin with.
+The versatility is a welcome by-product and conveyor of its popularity.
+The different flavours \gls{svd} comes in provide vast combinations of benefits and drawbacks.
+These characteristics can furthermore be tailored to a specific problem to either optimise it or to make it feasible in the first place.
 
-Additionally, one major advantage from \gls{svd} over other approaches, such as the standard approach from section \ref{section:standardApproach}, is that the \gls{svd} provides a robust matrix which is guaranteed to exist \cite{brunton2019data}.\bigskip
+Additionally, one major advantage from the \gls{svd} over other approaches, such as the standard approach from section \ref{section:standardApproach}, is that the \gls{svd} provides a robust matrix which is guaranteed to exist \cite{brunton2019data}.\bigskip
 
 
 
-To get an idea of how \gls{pca} and \gls{svd} are related to each other, a brief description is that \gls{pca} is a statistical application of an \gls{svd} \cite{brunton2019data}.
+To get an idea of how \gls{pca} and \gls{svd} are related to each other, a brief description is that \gls{pca} is a statistical application of the \gls{svd} \cite{brunton2019data}.
 \Gls{pca} performs one additional task in contrast to a classical \gls{svd}: the data is centred prior to its application.
 The \gls{svd} in general provides a hierarchical representation of the data inside a new matrix which is defined by dominant correlations within a given data set.
 \bigskip
 
 
 
-To end our introduction, it is interesting to know that the \gls{svd} provides the basis for other statistical techniques.
+To end our introduction, it is worth noting know that the \gls{svd} provides the basis for other statistical techniques.
 These include the Karhunen-Loève transform (KLT), empirical orthogonal functions (EOFs) and canonical correlation analysis (CCA).
 As these techniques are not closely related to \gls{pca}, none of these will be referred to in this work.
 
@@ -96,7 +97,7 @@ The matrix is then decomposed into three parts:
 $U \in \mathbb{R}^{n \times n}$ and $V \in \mathbb{R}^{m \times m}$ are unitary matrices with orthogonal columns.
 The columns of $U$ are called the \emph{left-singular vectors} of $A$ and $V$ are the \emph{right-singular vectors} of $A$.
 $\Sigma \in \mathbb{R}^{n \times m}$ contains non-negative entries on the diagonal with zeros everywhere else.
-The non-negative entries in $\Sigma$ are called the \emph{singular values} and are ordered from largest to slowest importance from 1 to $m$ \cite{brunton2019data}.
+The non-negative entries in $\Sigma$ are called the \emph{singular values} and are ordered from largest to smallest importance from 1 to $m$ \cite{brunton2019data}.
 \bigskip
 
 
@@ -113,7 +114,7 @@ For the next paragraph, we are assuming that $n>>m$\footnote{$n$ is significantl
 Now that we know what the decomposed matrices contain, we quickly realise the immense computational power that is required to construct the matrix $AA^T$.
 Let alone solve the eigenvalue problem to this matrix.
 
-Thankfully, \gls{svd} delivers a few different approaches to either efficiently compute the eigenvalues or to accurately approximate the \gls{singular} values.
+Thankfully, the \gls{svd} delivers a few different approaches to either efficiently compute the eigenvalues or to accurately approximate the \gls{singular} values.
 This is achieved using sampling methods or by the help of randomness and probability.
 These methods significantly reduce the required computational resources.
 To contrast this, the following methods that will be considered will compare the runtime complexity.

@@ -9,11 +9,11 @@
     \label{fig:misalignedEigenface}
 \end{wrapfigure}
 
-One major problem with \gls{pca} as well as the \gls{svd} is that the units of the data on all axes as well as its alignment significantly impacts the resulting approximation \cite{brunton2019data}.
-The demonstration of the eigenfaces solely showcased decent results because the faces have been meticulously centred and cropped manually prior to the evaluation.
+One major problem with \gls{pca} originating from the \gls{svd} is that the units of the data on all axes as well as its alignment significantly impacts the resulting decomposition \cite{brunton2019data}.
+The demonstration of the eigenfaces solely showcased solid results because the faces have been meticulously centred and cropped manually prior to the evaluation.
 The impact can be observed in the adjoining figure \ref{fig:misalignedEigenface}.
 
-To demonstrate the issues, 190 of the 2282 faces have been rotated by 10\textdegree\ prior to the \gls{svd}.
+To demonstrate this issue, 190 of the 2282 faces have been rotated by 10\textdegree\ prior to the \gls{svd}.
 This shows that a mere 8\% is enough to obfuscate the analysis.
 
 
@@ -78,7 +78,7 @@ This is due to the \glspl{pc} primarily picking up the biggest similarities in t
 
 But this does not have to be the end, upon further inspection by trial and error, we can identify \gls{pc} 5 and 6.
 Said \gls{pc} propose a split of the graph seen in figure \ref{fig:pcVandVI}.
-The values are now noticeably heterogenous and we can make certain observations from their shape.
+The values are now heterogenous and we can make certain observations and draw conclusions based on their shape.
 
 \begin{center}
     \begin{figure}[h]
