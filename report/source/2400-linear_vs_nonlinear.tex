@@ -1,20 +1,20 @@
-The high-level classification of the problem is important to understand in order to chose the right category of \gls{dr} methods.
-
+Having a rough idea of the repartition of the data of a problem is important to understand in order to chose the right category of \gls{dr} methods.
 Thus, it requires special attention by its users since it can easily be used erroneously.
 We need to understand the gross patterns in the data set we need to operate on.
-\medskip
+\bigskip
 
-Figure \ref{fig:linearvsnonlinearproblems} below illustrates and contrasts the general patterns that we need to identify:\vspace*{4mm}
+Figure \ref{fig:linearvsnonlinearproblems} below illustrates and contrasts the general patterns that we need to identify:%
+\vspace*{2mm}
 
-\renewcommand{\tikzscale}{1.18}
+\renewcommand{\tikzscale}{1.2}
 \begin{figure}[h]
-	\begin{subfigure}{0.48\textwidth}
+	\begin{subfigure}{0.49\textwidth}
 	    \caption{Linear problems}
 		\input{source/2401-linear_problem.tex}
 	    \label{subfig:linearproblems}
 	\end{subfigure}
 	\hfill
-	\begin{subfigure}{0.48\textwidth}
+	\begin{subfigure}{0.49\textwidth}
 	    \caption{Non-linear problems}
 		\input{source/2402-non_linear_problem.tex}
 	    \label{subfig:nonlinearproblems}
@@ -22,8 +22,12 @@ Figure \ref{fig:linearvsnonlinearproblems} below illustrates and contrasts the g
 \caption{Linear vs. non-linear problems.}
 \label{fig:linearvsnonlinearproblems}
 \end{figure}
+\bigskip
 
 As we can see in figure \ref{subfig:linearproblems}, a linear problem is given when we are able to identify a straight line (or any \gls{hyperplane}), to split the data into unambiguous subsets.
 Intuitively, these types of problem are comparably easy to solve.
+\medskip
 
 A non-linear problem, as pictured in figure \ref{subfig:nonlinearproblems}, already looks more complex on the first glance.
+These methods are significantly more expensive in terms of computational resouces required.
+We will briefly give a high-level introduction to non-linear \acrlong{dr} at the end, as this work will primarily focus on linear problems.
