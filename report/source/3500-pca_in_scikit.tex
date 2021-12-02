@@ -247,7 +247,7 @@ This routine is still the default when calling an \gls{svd} in Matlab for exampl
 
 One key issue in \acrlong{pca} is how to decide which \glspl{pc} to keep.
 When our goal is to visualise data, the answer is trivial: 2 or 3 since higher dimensionality is difficult to picture.
-But when our goal is efficient computation, the answer is quite more complicated and is tensioned between significantly faster results versus more required computational power.
+But when our goal is efficient computation, the answer is quite more complicated and is tensioned between significantly faster results versus higher requirements in computational power.
 \bigskip
 
 
@@ -263,10 +263,16 @@ To compute this approximation, we are starting from a Bayesian model assumption 
 This integral can then be approximated efficiently using a Laplace approximation.
 \bigskip
 
-To round this up, \citeauthor{minka2000automatic} tested the performance is various samples.
+
+His method did not only turn out to be significantly faster than its contestants.
+The simulations he performed turned out to be convincingly more accurate and guaranteed to pick the correct dimensionality for an accurate representation of the data.
+
+\bigskip
+
+To round this up, \citeauthor{minka2000automatic} tested the performance in his various samples.
 He used data-rich and sparse data as well as data sets with varying signal-to-noise ratios.
 
-The results are exceptional, while not always scoring best amongst all different algorithms for model selection, his approach is able to consistently show remarkable results.
+The results are exceptional, while not always scoring best amongst all different algorithms for model selection, his approach is able to consistently perform well accross various disciplines.
 This is opposing to other algorithms which perform well on a specific shape of data, but utterly fail in different categories.
 
 
