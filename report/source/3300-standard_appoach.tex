@@ -27,7 +27,7 @@ As we can observe, when we pick the right \gls{hyperplane}, such as the x axis s
 
 As one might be inclined to think the idea strongly resembles to a regression problem. 
 \citeauthor{tarpey1999self} elaborates this idea thoroughly in his paper \citetitle{tarpey1999self} \cite{tarpey1999self}.
-He proposes a procedure to identify when a distribution is centred about a \acrlong{pc} axis, which he calls \emph{self-consistent}.
+He proposes a procedure to identify when a distribution is centred around a \acrlong{pc} axis, which he calls \emph{self-consistent}.
 \citeauthor{tarpey1999self} then ends his work by proposing a test for the determined \emph{self-consistency} of a \gls{pc} to conclude if it is fitting or not.
 
 
@@ -46,7 +46,7 @@ He proposes a procedure to identify when a distribution is centred about a \acrl
 
 \subsubsection{Correlation and Covariance} \label{section:correlationANDcovariance}
 
-As it is often true when dealing with large data set, the best suited choice for a problem depends on the given circumstances themselves and does not have a generalised answer.
+As it is often true when dealing with large data sets, the best suited choice for a problem depends on the given circumstances themselves and does not have a generalised answer.
 
 Both measures of the variation between two variables, the covariance, and the correlation, are essential to the various approaches to \gls{pca}.
 Therefore, we will begin by looking at the definitions of the covariance and correlation between two variables and highlight their similarities \cite{downey2011think}:
@@ -74,12 +74,13 @@ As we can observe, the definitions are tied to each other. By factoring out $\si
 	Corr(X,Y) &= \frac{Cov(X,Y)}{\sigma_X \cdot \sigma_Y}
 \end{align}
 
-Therefore, we can conclude that the correlation will always lie in the range of $[-1;1]$ whereas the covariance shows the raw numbers that these variables do represent.\bigskip
+Therefore, we can conclude that the correlation will always lie in the range of $[-1;1]$ whereas the covariance shows the raw numbers that these variables do represent.
+\bigskip
 
 
 Generally, the covariance gives us a way better feel for the values and the relationships they represent and are therefore easy to interpret at first sight.
-The correlation matrix however, being of relative nature, requires the proportions of the variables to be known before being able to understand the scope that they represent.
-Understanding the proportions is also a concept that must be remembered by the person who interprets such data to not make false assumptions.
+The correlation however, being of relative nature, requires the proportions of the variables to be known before being able to understand the scope that they represent.
+Understanding the proportions is a concept that must be remembered by the person who interprets such data to not make false assumptions.
 
 However, when the variance between variables is enormous in comparison to other variables in a data set, the covariance can render the assertions from the first components useless as the series with the enormous variance will dominate the calculations.
 
@@ -150,7 +151,7 @@ We will now go through the steps, one-by-one, to comprehend how to establish the
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Now that we are able to establish the optimisation problem from $\overrightarrow{v}^T S \overrightarrow{v}$, when trying to compute the problem, we notice that arbitrarily increasing the magnitude of vector $\overrightarrow{v}$ would result in proportionally increasing the results ad infinitum.
+Now that we are able to establish the optimisation problem from $\overrightarrow{v}^T S \overrightarrow{v}$, when trying to compute the problem, we notice that arbitrarily increasing the magnitude of vector $\overrightarrow{v}$ would result in a proportional increase of the results ad infinitum.
 Therefore, we need to restrict all solutions to a set size such as $\norm{v} = 1$ (note that $\norm{a}$ represents the Euclidean norm of $a$).
 
 Now dealing with a constrained optimisation problem, we can obtain the Lagrangian $\mathcal{L}(\overrightarrow{v}, \lambda)$ to solve the problem $\max_{\overrightarrow{v}} (\overrightarrow{v}^T S \overrightarrow{v})$ \cite{deisenroth2020mathematics}:
@@ -179,7 +180,7 @@ Now dealing with a constrained optimisation problem, we can obtain the Lagrangia
 {\setstretch{1.5}
 \begin{align}
 	\label{formula:maxOptimisationIII}
-	2 \overrightarrow{v}^T S - 2 \lambda_1 \overrightarrow{v}^T = 0 &= 1 - \overrightarrow{v}^T \overrightarrow{v}
+	2 \overrightarrow{v}^T S - 2 \lambda_1 \overrightarrow{v}^T &= 0 = 1 - \overrightarrow{v}^T \overrightarrow{v}
 	\\
 	\label{formula:maxOptimisationIV}
 	2 \overrightarrow{v}^T S - 2 \lambda_1 \overrightarrow{v}^T &= 0

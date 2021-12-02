@@ -1,4 +1,4 @@
-Now that we are familiar with the ideas behind the \gls{svd} and aware of the connection between \gls{pca} and \gls{svd}, it is time to see how \gls{pca} is implemented in \gls{scikit}.
+Now that we are familiar with the ideas behind the \gls{svd} and are aware of the connection between \gls{pca} and the \gls{svd}, it is time to see how \gls{pca} is implemented in \gls{scikit}.
 We will explore three different possible solvers to decompose large matrices and evaluate their strengths and weaknesses.
 \bigskip
 
@@ -55,7 +55,7 @@ else:
 As we can see in listing \ref{lst:autoPCA} above, the choice of the adequate solver is primarily dependent on the parameter \texttt{`n\_components`}.
 This keyword allows us to explicitly declare the number of \acrlongpl{pc} to keep.
 
-\texttt{`n\_components`} accepts either a \texttt{float}, which will select the number of components such that the quota of a desired variance is reached; an \texttt{int}, which will select as many principal components; or the string \texttt{`mle`}, which estimates a reasonable number of \gls{pc} to keep and will be discussed in greater detail in the upcoming section \ref{sec:mle}.
+\texttt{`n\_components`} accepts either a \texttt{float}, which will select the number of components such that a given quota of a desired variance is reached; an \texttt{int}, which will select as many principal components; or the string \texttt{`mle`}, which estimates a reasonable number of \gls{pc} to keep and will be discussed in greater detail in the upcoming section \ref{sec:mle}.
 \bigskip
 
 
@@ -217,13 +217,13 @@ prefix, dtype, prefer_fortran = find_best_blas_type(arrays, dtype)
 \end{lstlisting}
 
 After finding the best suited data type in \gls{scipy}, the characters \texttt{ge} in \acrshort{lapack} describe a general matrix (i.e., unsymmetric and potentially rectangular).
-Ultimately, the characters \texttt{svd} and \texttt{sdd} describe two different routines to solve an \gls{svd}.
+Ultimately, the characters \texttt{svd} and \texttt{sdd} describe two different routines to solve a \gls{svd}.
 \texttt{svd} refers to the so-called \emph{simple driver}, the function is referred to as \texttt{xGESVD} in \acrshort{lapack}.
 \texttt{sdd} refers to the \emph{divide and conquer driver} offered by \acrshort{lapack}, referred to as \texttt{xGESDD}.
 \medskip
 
 The \emph{divide and conquer driver} solve the same problem as the simple driver.
-It is much faster than the simple driver albeit requires more computational resources.
+It is much faster than the simple driver but requires more computational resources.
 This routine is chosen by default when calling \texttt{scipy.linalg.svd}, which is exactly what \gls{scikit} does in listing \ref{lst:scipyToLAPACK}.
 
 The full detail on the algorithm is found in section 3.4.3 in \citetitle{anderson1999lapack} \cite{anderson1999lapack} and the implementation in Fortran 77 is found in ``Part 2 - Specifications of Routines''.
@@ -270,10 +270,10 @@ The simulations he performed turned out to be convincingly more accurate and gua
 \bigskip
 
 To round this up, \citeauthor{minka2000automatic} tested the performance in his various samples.
-He used data-rich and sparse data as well as data sets with varying signal-to-noise ratios.
+He used data-rich, sparse as well as data sets with a varying signal-to-noise ratios.
 
 The results are exceptional, while not always scoring best amongst all different algorithms for model selection, his approach is able to consistently perform well accross various disciplines.
-This is opposing to other algorithms which perform well on a specific shape of data, but utterly fail in different categories.
+This is opposing to other algorithms, which perform well on a specific shape of data, but utterly fail in different categories.
 
 
 
@@ -338,7 +338,7 @@ Now, we will describe what each node in figure \ref{fig:scikitToARPACK} represen
 	\item \texttt{eigsh} then verifies the content of the matrix and chooses the adequate \acrshort{arpack} driver:
 	\begin{itemize}
 		\item If the matrix is identified a Hermitian (complex) matrix, then the complex driver is used. As we are only focusing on real (symmetric) matrices, this step will not be considered any further.
-		\item If the matrix is identified to be rectangular instead of squared, the function is handed to a \acrshort{lapack} driver instead
+		\item If the matrix is identified to be rectangular instead of squared, the function is handed to a \acrshort{lapack} driver instead.
 		\item If the matrix is confirmed to be symmetric as expected, the matrix is processed by the function \texttt{\_SymmetricArpackParams} (\texttt{\_SAP}) and then handed over to the \texttt{SAUPD} driver.
 	\end{itemize}
 \end{itemize}
@@ -380,7 +380,7 @@ Over the past two decades, there have been numerous different propositions to ra
 \medskip
 
 One that has emerged in a wide range of disciplines has been the method proposed by \mycite{halko2011finding}.
-Simultaneously, this is the method employed in \gls{scikit}.
+Simultaneously, this is the method implemented in \gls{scikit}.
 \bigskip
 
 
@@ -427,7 +427,7 @@ It now follows that $X \approx QY$ \cite{brunton2019data} and it is now possible
 
 Because Q is orthonormal and approximates the columns of $X$, the matrices singular values $\Sigma$ and the right-singular vectors $V$ are the same for $Y$ and $X$ \cite{brunton2019data}.
 
-Finally, thanks to aforementioned properties, it is now possible to reconstruct the high-dimensional left singular vectors $U$ using $U_Y$ and $Q$:
+Finally, thanks to the aforementioned properties, it is now possible to reconstruct the high-dimensional left singular vectors $U$ using $U_Y$ and $Q$:
 
 \vspace{-4mm}
 \begin{equation}
@@ -437,7 +437,7 @@ Finally, thanks to aforementioned properties, it is now possible to reconstruct 
 \smallskip
 
 
-Now that we are familiar with how to approximate matrix decompositions with randomness, let us consider two methods on how to control and improve the prediction results.
+Now that we are familiar how to approximate matrix decompositions with randomness, let us consider two methods on how to control and improve the prediction results.
 We will now introduce the concepts of oversampling as well as power iterations.
 
 \paragraph{Oversampling}

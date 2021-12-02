@@ -9,12 +9,12 @@
     \label{fig:misalignedEigenface}
 \end{wrapfigure}
 
-One major problem with \gls{pca} originating from the \gls{svd} is that the units of the data on all axes as well as its alignment significantly impacts the resulting decomposition \cite{brunton2019data}.
+One major problem with \gls{pca} originating from the \gls{svd}, is that the units of the data on all axes as well as its alignment significantly impacts the resulting decomposition \cite{brunton2019data}.
 The demonstration of the eigenfaces solely showcased solid results because the faces have been meticulously centred and cropped manually prior to the evaluation.
 The impact can be observed in the adjoining figure \ref{fig:misalignedEigenface}.
 
 To demonstrate this issue, 190 of the 2282 faces have been rotated by 10\textdegree\ prior to the \gls{svd}.
-This shows that a mere 8\% is enough to obfuscate the analysis.
+This shows that a mere 8\% of corrupted data is enough to obfuscate the analysis.
 
 
 % \cite{brunton2019data} (section 1.7)
@@ -71,14 +71,14 @@ We are now considering the Yale Face Database again and comparing two exemplary 
 \end{center}
 
 \vspace{-8mm}
-For the first evaluation in figure \ref{fig:pcIandII} we are considering the two major \glspl{pc} when naively picking the highest singular values.
+For the first evaluation in figure \ref{fig:pcIandII}, we are considering the two major \glspl{pc} when naively picking the highest singular values.
 Each point represents one image from the respective person.
 As we can observe, the assertions made from the graph are negligible.
 This is due to the \glspl{pc} primarily picking up the biggest similarities in the pictures such as the lighting conditions.
 
 But this does not have to be the end, upon further inspection by trial and error, we can identify \gls{pc} 5 and 6.
 Said \gls{pc} propose a split of the graph seen in figure \ref{fig:pcVandVI}.
-The values are now heterogenous and we can make certain observations and draw conclusions based on their shape.
+The values are now heterogenous and we can make certain observations and draw conclusions based on their location within the clusters.
 
 \begin{center}
     \begin{figure}[h]
