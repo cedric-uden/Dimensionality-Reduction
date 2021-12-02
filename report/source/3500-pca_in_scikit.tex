@@ -5,7 +5,7 @@ We will explore three different possible solvers to decompose large matrices and
 
 
 In order to select the right solver for the problem, which are all based on the \gls{svd}, \gls{scikit}'s \texttt{PCA} class provides the keyword argument \texttt{`solver`} to be set to one of the following strings: \texttt{`auto`, `full`, `randomized`} or \texttt{`arpack`}.
-The latter three can be set manually, or if set to \texttt{`auto`}, scikit will choose the one it deems fitting.
+The latter three represent the manual options, or if set to \texttt{`auto`}, scikit will choose the one it deems most fitting.
 \bigskip
 
 The current implementation to choose an adequate solver looks as following:%
@@ -222,7 +222,7 @@ Ultimately, the characters \texttt{svd} and \texttt{sdd} describe two different 
 \texttt{sdd} refers to the \emph{divide and conquer driver} offered by \acrshort{lapack}, referred to as \texttt{xGESDD}.
 \medskip
 
-The \emph{divide and conquer driver} solve the same problem as the simple driver.
+The \emph{divide and conquer driver} solves the same problem as the simple driver.
 It is much faster than the simple driver but requires more computational resources.
 This routine is chosen by default when calling \texttt{scipy.linalg.svd}, which is exactly what \gls{scikit} does in listing \ref{lst:scipyToLAPACK}.
 
@@ -269,8 +269,8 @@ The simulations he performed turned out to be convincingly more accurate and gua
 
 \bigskip
 
-To round this up, \citeauthor{minka2000automatic} tested the performance in his various samples.
-He used data-rich, sparse as well as data sets with a varying signal-to-noise ratios.
+To round this up, \citeauthor{minka2000automatic} tested the performance in various samples.
+He used data-rich, sparse as well as data sets with a varying signal-to-noise ratio.
 
 The results are exceptional, while not always scoring best amongst all different algorithms for model selection, his approach is able to consistently perform well accross various disciplines.
 This is opposing to other algorithms, which perform well on a specific shape of data, but utterly fail in different categories.
@@ -297,7 +297,7 @@ It is designed exclusively to solve large-scale eigenvalue problems \cite{lehouc
 
 
 We will now again trace the flow of data from \gls{scikit} through \gls{scipy} into the package where it is being processed.
-This starts again the the \href{\scikitPCAvIxOxI{_pca}}{\texttt{\_pca}} module:
+This starts again in the \href{\scikitPCAvIxOxI{_pca}}{\texttt{\_pca}} module:
 
 \begin{lstlisting}[
 inputencoding={utf8}, 
@@ -346,7 +346,7 @@ Now, we will describe what each node in figure \ref{fig:scikitToARPACK} represen
 The \texttt{SAUPD} driver in \acrshort{arpack} then solves the eigenproblem as a variant of the Lanczos method.
 The Lanczos method is designed to compute approximations to a few eigenvalues and eigenvectors of a symmetric matrix \cite{lehoucq1998arpack}.
 
-\texttt{SAUPD} can then be finetuned with various parameters such as \texttt{WHICH} to compute the smallest or largest eigenvalues first, \texttt{NEV} to set the numbers of eigenvalues to be computed; or \texttt{TOL} to set the tolerance of the precision for floating point numbers.
+\texttt{SAUPD} can then be finetuned with various parameters such as \texttt{WHICH} to compute the smallest or largest eigenvalues first; \texttt{NEV} to set the numbers of eigenvalues to be computed; or \texttt{TOL} to set the tolerance of the precision for floating point numbers.
 \bigskip
 
 To sum up the \acrshort{arpack} method, it is a procedure to approximate the decomposition of a matrix.
@@ -425,7 +425,7 @@ It now follows that $X \approx QY$ \cite{brunton2019data} and it is now possible
 	Y = U_Y \ \Sigma \ V^T
 \end{equation}
 
-Because Q is orthonormal and approximates the columns of $X$, the matrices singular values $\Sigma$ and the right-singular vectors $V$ are the same for $Y$ and $X$ \cite{brunton2019data}.
+Because Q is orthonormal and approximates the columns of $X$, the singular values $\Sigma$ of the matrix and the right-singular vectors $V$ are the same for $Y$ and $X$ \cite{brunton2019data}.
 
 Finally, thanks to the aforementioned properties, it is now possible to reconstruct the high-dimensional left singular vectors $U$ using $U_Y$ and $Q$:
 
